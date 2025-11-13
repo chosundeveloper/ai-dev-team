@@ -267,6 +267,25 @@ AI 개발팀이 스스로 소개 페이지를 제작
   ```
   이후 `pm`, `designer`, `frontend`, `backend`, `growth` 중 하나를 선택하고 오더를 입력하면 해당 에이전트의 응답을 즉시 확인할 수 있습니다.
 
+## 📝 보고 & 승인 루프
+
+- `crew_console.py`로 실행한 모든 오더는 `reports/log.jsonl`에 `pending` 상태로 기록됩니다.
+- `report_manager.py`를 사용해 언제든 보고를 확인하고 승인/수정 요청을 남길 수 있습니다.
+
+### 보고 목록 확인
+```bash
+python3 report_manager.py list --status pending
+```
+
+### 승인 또는 수정 요청 남기기
+```bash
+python3 report_manager.py respond --id <보고ID> --status approved --feedback "좋습니다"
+# 또는
+python3 report_manager.py respond --id <보고ID> --status needs_changes --feedback "CTA 색상 수정"
+```
+
+- 이렇게 하면 팀이 자동으로 보고를 올리고, 사용자는 `approved / needs_changes` 같은 응답을 남겨 워크플로우를 이어갈 수 있습니다.
+
 ### 👥 누가 뭘 기여했나요?
 - **Alex (PM)**: 요구사항 브리핑, Build Plan 설계, README 실행 요약
 - **Maya (Design)**: 레이아웃/컬러 토큰, Hero·섹션 배치 가이드

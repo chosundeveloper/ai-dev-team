@@ -1,7 +1,11 @@
 """Interactive CrewAI console for issuing agent-specific orders."""
 import argparse
+import json
 import os
+from datetime import datetime
+from pathlib import Path
 from textwrap import dedent
+from uuid import uuid4
 
 from crewai import Agent, Crew, Process, Task
 from dotenv import load_dotenv
@@ -77,6 +81,24 @@ def run_order(agent: Agent, order: str) -> str:
     return crew.kickoff()
 
 
+REPORT_PATH = Path("reports/log.jsonl")
+
+
+def append_report(agent_key: str, order: str, response: str) -> None:
+    REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    entry = {
+        "id": uuid4().hex,
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "agent": agent_key,
+        "order": order,
+        "response": response,
+        "status": "pending",
+        "user_feedback": None,
+    }
+    with REPORT_PATH.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+
 def interactive_loop(agents: dict) -> None:
     """Simple REPL so the user can pick an agent and send orders repeatedly."""
     help_text = dedent(
@@ -101,6 +123,8 @@ def interactive_loop(agents: dict) -> None:
         print("\n--- 응답 ---")
         response = run_order(agents[choice], order)
         print(response)
+        append_report(choice, order, response)
+        print("👉 보고가 reports/log.jsonl 에 기록되었습니다. (상태: pending)")
         print("--------------\n")
 
 
@@ -121,6 +145,8 @@ def main() -> None:
             raise SystemExit("--agent 사용 시 --order도 함께 전달하세요.")
         result = run_order(agents[args.agent], args.order)
         print(result)
+        append_report(args.agent, args.order, result)
+        print("👉 보고가 reports/log.jsonl 에 기록되었습니다. (상태: pending)")
         return
 
     interactive_loop(agents)
