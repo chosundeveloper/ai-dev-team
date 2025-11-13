@@ -230,18 +230,15 @@ AI 개발팀이 스스로 소개 페이지를 제작
 
 ## 🔍 지금 무엇을 만들고 있나요?
 
-- **핵심 결과물**: `Dev Daily` — 매일 아침 3분 만에 읽는 개발자 전용 AI 큐레이션 뉴스레터 (오늘 즉시 출시 진행)
-- **어디서 확인?** `index.html` 혹은 배포한 팀 페이지의 **🧭 Build Plan** 섹션에서 순서/담당자/일정을 한눈에 확인할 수 있습니다.
-- **요약 역할 분담**
-  - Step 1 · Discovery (Day 1-2): 문제 정의·KPI — Alex (PM), Sam (Growth)
-  - Step 2 · Experience Design (Day 2-4): 이메일 템플릿·구독 UX — Maya (Design), Alex
-  - Step 3 · Build & Automation (Day 4-9): 스크래퍼·요약 파이프라인·발송기 — Claude (Lead Dev), 라Codex (Execution), Chris (FE), Jordan (BE)
-  - Step 4 · QA & Launch (Day 9-12): 테스트·온보딩·런치 키트 — 라Codex (QA), Sam, Chris
-  - Step 5 · Growth Loops (Day 12-14): 추천 프로그램·CTA 실험 — Sam, Alex, Claude
-
-### 🔜 다음 프로젝트
-- No-Code AI 챗봇 빌더
-- 개발자 생산성 대시보드
+- **핵심 결과물**: `AI 팀 포트폴리오 퍼블리셔` — PM/디자이너/프론트 에이전트가 협업해 `team_portfolio.html`을 15분 내 완성하는 자동 퍼블리셔 (즉시 실행 중)
+- **보조 결과물**: `AI 웹사이트 기획서 메이커` — LangGraph 멀티 에이전트가 시장조사→경쟁분석→아이디어→평가→PM 단계를 거쳐 `final_plan.md`를 바로 생성
+- **어디서 확인?** `index.html` 또는 배포된 팀 페이지의 **🧭 Build Plan / 📝 Build Report** 섹션에서 순서·담당자·산출물을 볼 수 있습니다.
+- **실행 단계 요약 (15분)**
+  - Step 1 · Brief Intake (2분) — Alex가 요구사항/톤/색상 정리
+  - Step 2 · Layout & Palette (4분) — Maya가 레이아웃과 컬러 토큰 확정
+  - Step 3 · Frontend Build (6분) — Chris와 라Codex가 HTML/CSS/애니메이션 작성
+  - Step 4 · QA & Polish (2분) — 라Codex·Sam이 반응형·카피·CTA를 검수
+  - Step 5 · Publish & Share (1분) — Claude·라Codex가 GitHub Pages에 바로 배포
 
 ## 📚 더 알아보기
 
