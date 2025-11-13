@@ -1,0 +1,350 @@
+{
+  "timestamp": "2025-11-14T05:13:22.482917",
+  "hour": 0,
+  "progress": {
+    "total_tasks": 40,
+    "completed": 30,
+    "in_progress": 0,
+    "blocked": 0,
+    "completion_rate": "75.0%"
+  },
+  "team_status": {
+    "PM": {
+      "name": "Alex",
+      "role": "Product Manager",
+      "status": "available",
+      "current_task": null,
+      "tasks_completed": 6
+    },
+    "Designer": {
+      "name": "Maya",
+      "role": "UI/UX Designer",
+      "status": "available",
+      "current_task": null,
+      "tasks_completed": 6
+    },
+    "Frontend": {
+      "name": "Chris",
+      "role": "Frontend Engineer",
+      "status": "available",
+      "current_task": null,
+      "tasks_completed": 7
+    },
+    "Backend": {
+      "name": "Jordan",
+      "role": "Backend Engineer",
+      "status": "available",
+      "current_task": null,
+      "tasks_completed": 7
+    },
+    "Growth": {
+      "name": "Sam",
+      "role": "Growth Specialist",
+      "status": "available",
+      "current_task": null,
+      "tasks_completed": 4
+    }
+  },
+  "tasks": {
+    "PM-001": {
+      "title": "프로젝트 요구사항 문서 작성",
+      "status": "completed",
+      "assigned_to": "PM",
+      "priority": "P0",
+      "phase": 1
+    },
+    "PM-002": {
+      "title": "기술 스택 최종 확정",
+      "status": "completed",
+      "assigned_to": "PM",
+      "priority": "P0",
+      "phase": 1
+    },
+    "PM-003": {
+      "title": "작업 분배 및 일정 수립",
+      "status": "completed",
+      "assigned_to": "PM",
+      "priority": "P0",
+      "phase": 1
+    },
+    "DESIGN-001": {
+      "title": "뉴스레터 레이아웃 와이어프레임",
+      "status": "completed",
+      "assigned_to": "Designer",
+      "priority": "P0",
+      "phase": 1
+    },
+    "DESIGN-002": {
+      "title": "컬러 스킴 및 브랜딩 가이드",
+      "status": "completed",
+      "assigned_to": "Designer",
+      "priority": "P0",
+      "phase": 1
+    },
+    "DESIGN-003": {
+      "title": "랜딩 페이지 목업",
+      "status": "completed",
+      "assigned_to": "Designer",
+      "priority": "P0",
+      "phase": 1
+    },
+    "BE-001": {
+      "title": "API 아키텍처 설계",
+      "status": "completed",
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 1
+    },
+    "BE-002": {
+      "title": "데이터베이스 스키마 설계",
+      "status": "completed",
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 1
+    },
+    "BE-003": {
+      "title": "크롤링 시스템 구조 설계",
+      "status": "completed",
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 1
+    },
+    "FE-001": {
+      "title": "컴포넌트 구조 설계",
+      "status": "completed",
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 1
+    },
+    "FE-002": {
+      "title": "라우팅 계획",
+      "status": "completed",
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 1
+    },
+    "FE-003": {
+      "title": "상태 관리 전략",
+      "status": "completed",
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 1
+    },
+    "GR-001": {
+      "title": "타겟 오디언스 분석",
+      "status": "completed",
+      "assigned_to": "Growth",
+      "priority": "P0",
+      "phase": 1
+    },
+    "GR-002": {
+      "title": "초기 마케팅 전략 수립",
+      "status": "completed",
+      "assigned_to": "Growth",
+      "priority": "P0",
+      "phase": 1
+    },
+    "BE-004": {
+      "title": "FastAPI 프로젝트 초기화",
+      "status": [
+        "BE-001"
+      ],
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "BE-005": {
+      "title": "데이터베이스 설정",
+      "status": [
+        "BE-002"
+      ],
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "BE-006": {
+      "title": "뉴스 크롤러 프로토타입",
+      "status": [
+        "BE-003"
+      ],
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "BE-007": {
+      "title": "AI 요약 기능",
+      "status": [
+        "BE-004"
+      ],
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "FE-004": {
+      "title": "React 프로젝트 초기화",
+      "status": [
+        "FE-001"
+      ],
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "FE-005": {
+      "title": "기본 라우팅 설정",
+      "status": [
+        "FE-002"
+      ],
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "FE-006": {
+      "title": "랜딩 페이지 구현",
+      "status": [
+        "DESIGN-003"
+      ],
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "DESIGN-004": {
+      "title": "UI 컴포넌트 디자인 완성",
+      "status": "completed",
+      "assigned_to": "Designer",
+      "priority": "P0",
+      "phase": 2
+    },
+    "DESIGN-005": {
+      "title": "이메일 템플릿 디자인",
+      "status": "completed",
+      "assigned_to": "Designer",
+      "priority": "P0",
+      "phase": 2
+    },
+    "BE-008": {
+      "title": "AI 뉴스 큐레이션 로직",
+      "status": [
+        "BE-007"
+      ],
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "BE-009": {
+      "title": "이메일 발송 기능",
+      "status": "completed",
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "FE-007": {
+      "title": "API 연동",
+      "status": [
+        "BE-007"
+      ],
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "FE-008": {
+      "title": "뉴스 목록 표시",
+      "status": [
+        "FE-007"
+      ],
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 2
+    },
+    "BE-010": {
+      "title": "스케줄러 구현",
+      "status": "completed",
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 3
+    },
+    "BE-011": {
+      "title": "사용자 관리 API",
+      "status": "completed",
+      "assigned_to": "Backend",
+      "priority": "P1",
+      "phase": 3
+    },
+    "FE-009": {
+      "title": "구독 완료 페이지",
+      "status": "completed",
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 3
+    },
+    "FE-010": {
+      "title": "아카이브 페이지",
+      "status": "completed",
+      "assigned_to": "Frontend",
+      "priority": "P1",
+      "phase": 3
+    },
+    "FE-011": {
+      "title": "모바일 최적화",
+      "status": "completed",
+      "assigned_to": "Frontend",
+      "priority": "P1",
+      "phase": 3
+    },
+    "DESIGN-006": {
+      "title": "최종 디자인 QA",
+      "status": "completed",
+      "assigned_to": "Designer",
+      "priority": "P0",
+      "phase": 3
+    },
+    "TEST-001": {
+      "title": "전체 팀 기능 테스트",
+      "status": "completed",
+      "assigned_to": "PM",
+      "priority": "P0",
+      "phase": 3
+    },
+    "BE-012": {
+      "title": "백엔드 배포",
+      "status": "completed",
+      "assigned_to": "Backend",
+      "priority": "P0",
+      "phase": 4
+    },
+    "FE-012": {
+      "title": "프론트엔드 배포",
+      "status": "completed",
+      "assigned_to": "Frontend",
+      "priority": "P0",
+      "phase": 4
+    },
+    "GR-003": {
+      "title": "ProductHunt 제출 준비",
+      "status": "completed",
+      "assigned_to": "Growth",
+      "priority": "P0",
+      "phase": 4
+    },
+    "GR-004": {
+      "title": "커뮤니티 마케팅",
+      "status": "completed",
+      "assigned_to": "Growth",
+      "priority": "P0",
+      "phase": 4
+    },
+    "PM-004": {
+      "title": "런칭 체크리스트 검토",
+      "status": "completed",
+      "assigned_to": "PM",
+      "priority": "P0",
+      "phase": 4
+    },
+    "PM-005": {
+      "title": "다음 24시간 계획",
+      "status": "completed",
+      "assigned_to": "PM",
+      "priority": "P0",
+      "phase": 4
+    }
+  }
+}

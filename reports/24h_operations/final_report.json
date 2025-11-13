@@ -1,0 +1,29 @@
+{
+  "start_time": "2025-11-14T05:12:18.769774",
+  "end_time": "2025-11-14T05:13:22.487772",
+  "total_tasks": 40,
+  "completed_tasks": 30,
+  "completion_rate": "75.0%",
+  "team_performance": {
+    "PM": {
+      "name": "Alex",
+      "tasks_completed": 6
+    },
+    "Designer": {
+      "name": "Maya",
+      "tasks_completed": 6
+    },
+    "Frontend": {
+      "name": "Chris",
+      "tasks_completed": 7
+    },
+    "Backend": {
+      "name": "Jordan",
+      "tasks_completed": 7
+    },
+    "Growth": {
+      "name": "Sam",
+      "tasks_completed": 4
+    }
+  }
+}
