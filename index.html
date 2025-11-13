@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroFlow AI - AI Technology Company</title>
-    <meta name="description" content="차세대 AI 기술로 비즈니스의 미래를 만들어갑니다">
+    <title>Spark Labs - Viral Product Builders</title>
+    <meta name="description" content="AI 기술로 매일 수백만 명이 사용하는 서비스를 빠르게 구축하고 성장시킵니다">
     <style>
         * {
             margin: 0;
@@ -12,22 +12,11 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --accent: #f59e0b;
-            --dark: #0f172a;
-            --dark-light: #1e293b;
-            --text: #e2e8f0;
-            --text-dim: #cbd5e1;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--dark);
-            color: var(--text);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
         .container {
@@ -36,128 +25,77 @@
             padding: 2rem;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary), #ec4899);
-            padding: 6rem 2rem;
+        /* Hero */
+        .hero {
             text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f59e0b, #ea580c, #dc2626);
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        header::before {
-            content: '';
+        .hero::before {
+            content: '🔥';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="%23ffffff" fill-opacity="0.1" d="M0,0 Q300,40 600,20 T1200,0 V120 H0 Z"/></svg>');
-            background-size: cover;
-            opacity: 0.3;
+            font-size: 15rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        header .content {
+        .hero .content {
             position: relative;
             z-index: 1;
         }
 
-        .logo {
-            font-size: 3rem;
-            font-weight: 900;
+        .hero h1 {
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            color: white;
+            font-weight: 900;
         }
 
-        .tagline {
+        .hero .tagline {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            font-weight: 300;
-            opacity: 0.95;
+            color: rgba(255,255,255,0.95);
         }
 
-        .description {
+        .hero .mission {
             font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: white;
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
         }
 
         /* Sections */
         section {
-            padding: 5rem 2rem;
+            margin-bottom: 5rem;
         }
 
         h2 {
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #f59e0b, #dc2626);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 800;
         }
 
-        /* Mission */
-        .mission-box {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .mission-box p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: var(--text-dim);
-        }
-
-        .values {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .value {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-        }
-
-        /* Services */
-        .services-grid {
+        /* Team */
+        .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
-        .service-card {
+        .team-card {
             background: rgba(255,255,255,0.05);
             backdrop-filter: blur(10px);
             padding: 2rem;
@@ -166,69 +104,39 @@
             transition: all 0.3s;
         }
 
-        .service-card:hover {
+        .team-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(99,102,241,0.2);
+            border-color: #f59e0b;
+            box-shadow: 0 20px 40px rgba(245,158,11,0.2);
         }
 
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        /* Claude 특별 표시 */
+        .claude-special {
+            border: 2px solid #8b5cf6;
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(99,102,241,0.1));
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .service-card .features {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .service-card .features li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text-dim);
-        }
-
-        .service-card .features li::before {
-            content: "✓";
+        .claude-special::before {
+            content: '⭐ Chief Developer';
             position: absolute;
-            left: 0;
-            color: #10b981;
-            font-weight: bold;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
-        /* Team */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .claude-special:hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 20px 40px rgba(139,92,246,0.3);
         }
 
-        .team-member {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            border-color: var(--secondary);
-        }
-
-        .avatar {
+        .member-avatar {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #f59e0b, #dc2626);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -236,326 +144,329 @@
             font-size: 2.5rem;
             font-weight: bold;
             margin: 0 auto 1rem;
+            color: white;
         }
 
-        .team-member h3 {
-            font-size: 1.3rem;
+        .claude-special .member-avatar {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #f59e0b;
+        }
+
+        .claude-special h3 {
+            color: #8b5cf6;
+        }
+
+        .role {
+            color: #f59e0b;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .team-member .role {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .team-member .bio {
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            margin-bottom: 1rem;
-        }
-
-        .team-member .specialty {
+        .model {
             font-size: 0.9rem;
-            color: var(--accent);
+            color: #cbd5e1;
+            margin-bottom: 1rem;
         }
 
-        /* Achievements */
-        .achievements {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .achievement {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-        }
-
-        .achievement .number {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .achievement .label {
-            font-size: 1.1rem;
-            color: var(--text-dim);
-            margin-top: 0.5rem;
-        }
-
-        /* Contact */
-        .contact {
-            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1));
-            padding: 4rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(99,102,241,0.2);
-        }
-
-        .contact h2 {
+        .description {
             margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            line-height: 1.6;
         }
 
-        .contact p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text-dim);
-        }
-
-        .contact-info {
+        .skills {
             display: flex;
-            justify-content: center;
-            gap: 3rem;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            gap: 0.5rem;
         }
 
-        .contact-item {
+        .skill {
+            background: linear-gradient(135deg, #f59e0b, #dc2626);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .claude-special .skill {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .project-header {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: #f59e0b;
+            flex: 1;
+        }
+
+        .viral-badge {
+            background: linear-gradient(135deg, #dc2626, #f59e0b);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
             gap: 0.5rem;
-            font-size: 1.1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech {
+            background: rgba(245,158,11,0.2);
+            border: 1px solid #f59e0b;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #fbbf24;
+        }
+
+        .features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #cbd5e1;
+        }
+
+        .features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .growth {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .monetization {
+            margin-top: 1rem;
+            color: #10b981;
+            font-weight: 600;
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 3rem 2rem;
-            color: var(--text-dim);
+            color: #64748b;
             border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        footer p {
-            margin: 0.5rem 0;
-        }
-
-        .tech-stack {
-            margin-top: 1rem;
-            font-size: 0.9rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
-
-            .tagline {
-                font-size: 1.2rem;
-            }
-
             h2 {
                 font-size: 2rem;
             }
-
-            .services-grid,
             .team-grid,
-            .achievements {
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="content">
-            <div class="logo">NeuroFlow AI</div>
-            <p class="tagline">Intelligent Solutions, Limitless Possibilities</p>
-            <p class="description">차세대 AI 기술로 비즈니스의 미래를 만들어갑니다</p>
-            <a href="#contact" class="cta-button">문의하기 →</a>
-        </div>
-    </header>
-
-    <!-- Mission -->
-    <section>
-        <div class="container">
-            <h2>Our Mission</h2>
-            <div class="mission-box">
-                <p>AI 기술의 민주화를 통해 모든 비즈니스가 혁신할 수 있도록 돕습니다</p>
-                <div class="values">
-                    <span class="value">혁신 (Innovation)</span> <span class="value">투명성 (Transparency)</span> <span class="value">협업 (Collaboration)</span> <span class="value">지속가능성 (Sustainability)</span>
-                </div>
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="content">
+                <h1>🔥 Spark Labs</h1>
+                <p class="tagline">Igniting Viral Ideas</p>
+                <p class="mission">AI 기술로 매일 수백만 명이 사용하는 서비스를 빠르게 구축하고 성장시킵니다</p>
             </div>
         </div>
-    </section>
 
-    <!-- Services -->
-    <section style="background: var(--dark-light);">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                
-        <div class="service-card">
-            <div class="service-icon">🤖</div>
-            <h3>AI Agent Platform</h3>
-            <p>멀티 에이전트 시스템으로 복잡한 업무를 자동화합니다</p>
-            <ul class="features"><li>LangGraph 기반</li> <li>무제한 확장</li> <li>실시간 협업</li></ul>
-        </div>
-        
-        <div class="service-card">
-            <div class="service-icon">🧠</div>
-            <h3>Custom LLM Solutions</h3>
-            <p>비즈니스에 최적화된 맞춤형 AI 모델을 제공합니다</p>
-            <ul class="features"><li>파인튜닝</li> <li>RAG 시스템</li> <li>프라이빗 배포</li></ul>
-        </div>
-        
-        <div class="service-card">
-            <div class="service-icon">📊</div>
-            <h3>AI Analytics</h3>
-            <p>AI 기반 데이터 분석으로 인사이트를 발견합니다</p>
-            <ul class="features"><li>실시간 분석</li> <li>자동 리포트</li> <li>예측 모델</li></ul>
-        </div>
-        
-        <div class="service-card">
-            <div class="service-icon">🚀</div>
-            <h3>AI Consulting</h3>
-            <p>AI 전략 수립부터 구현까지 전문가가 함께합니다</p>
-            <ul class="features"><li>전략 컨설팅</li> <li>POC 개발</li> <li>팀 교육</li></ul>
-        </div>
-        
-            </div>
-        </div>
-    </section>
-
-    <!-- Team -->
-    <section>
-        <div class="container">
-            <h2>Our Team</h2>
+        <!-- Team -->
+        <section>
+            <h2>👥 Our Team</h2>
             <div class="team-grid">
                 
-        <div class="team-member">
-            <div class="avatar">A</div>
-            <h3>Alex Chen</h3>
-            <p class="role">CEO & AI Strategist</p>
-            <p class="bio">15년 경력의 AI 전략가. MIT AI Lab 출신</p>
-            <p class="specialty"><strong>전문분야:</strong> AI 전략, 비즈니스 모델</p>
+        <div class="team-card">
+            <div class="member-avatar">A</div>
+            <h3>Alex</h3>
+            <p class="role">Product Manager</p>
+            <p class="model">🤖 Llama 3.3 70B</p>
+            <p class="description">조회수 높은 제품을 기획하고 성장 전략을 수립하는 PM</p>
+            <div class="skills"><span class="skill">전략 기획</span> <span class="skill">시장 분석</span> <span class="skill">바이럴 마케팅</span> <span class="skill">Growth Hacking</span></div>
         </div>
         
-        <div class="team-member">
-            <div class="avatar">M</div>
-            <h3>Maya Rodriguez</h3>
-            <p class="role">Chief Design Officer</p>
-            <p class="bio">사용자 중심 AI 인터페이스 디자인 전문가</p>
-            <p class="specialty"><strong>전문분야:</strong> UX/UI, 인간-AI 상호작용</p>
+        <div class="team-card claude-special">
+            <div class="member-avatar">C</div>
+            <h3>Claude</h3>
+            <p class="role">AI Orchestrator & Developer</p>
+            <p class="model">🤖 Claude 3.5 Sonnet</p>
+            <p class="description">전체 개발을 총괄하고 실제 코드를 작성하는 AI 개발자</p>
+            <div class="skills"><span class="skill">풀스택 개발</span> <span class="skill">AI 통합</span> <span class="skill">시스템 설계</span> <span class="skill">코드 작성</span></div>
         </div>
         
-        <div class="team-member">
-            <div class="avatar">C</div>
-            <h3>Chris Park</h3>
-            <p class="role">Head of Engineering</p>
-            <p class="bio">대규모 AI 시스템 구축 경험 10년+</p>
-            <p class="specialty"><strong>전문분야:</strong> MLOps, 시스템 아키텍처</p>
+        <div class="team-card">
+            <div class="member-avatar">M</div>
+            <h3>Maya</h3>
+            <p class="role">UI/UX Designer</p>
+            <p class="model">🤖 Llama 3.3 70B</p>
+            <p class="description">사용자가 다시 찾아오는 인터페이스를 만드는 디자이너</p>
+            <div class="skills"><span class="skill">UI 디자인</span> <span class="skill">사용자 경험</span> <span class="skill">바이럴 UX</span> <span class="skill">프로토타이핑</span></div>
         </div>
         
-        <div class="team-member">
-            <div class="avatar">J</div>
-            <h3>Jordan Lee</h3>
-            <p class="role">Lead ML Engineer</p>
-            <p class="bio">LLM 파인튜닝 및 최적화 전문가</p>
-            <p class="specialty"><strong>전문분야:</strong> LLM, 멀티 에이전트 시스템</p>
+        <div class="team-card">
+            <div class="member-avatar">C</div>
+            <h3>Chris</h3>
+            <p class="role">Frontend Developer</p>
+            <p class="model">🤖 Llama 3.3 70B</p>
+            <p class="description">빠르고 아름다운 프론트엔드를 구현하는 개발자</p>
+            <div class="skills"><span class="skill">React</span> <span class="skill">Next.js</span> <span class="skill">반응형 디자인</span> <span class="skill">SEO</span></div>
         </div>
         
-        <div class="team-member">
-            <div class="avatar">S</div>
-            <h3>Sam Taylor</h3>
-            <p class="role">Research Scientist</p>
-            <p class="bio">최신 AI 연구를 제품화하는 브릿지 역할</p>
-            <p class="specialty"><strong>전문분야:</strong> AI 연구, 논문 구현</p>
+        <div class="team-card">
+            <div class="member-avatar">J</div>
+            <h3>Jordan</h3>
+            <p class="role">Backend Developer</p>
+            <p class="model">🤖 Mixtral 8x7b</p>
+            <p class="description">수백만 사용자를 감당하는 백엔드를 구축하는 엔지니어</p>
+            <div class="skills"><span class="skill">Python</span> <span class="skill">FastAPI</span> <span class="skill">PostgreSQL</span> <span class="skill">확장성</span></div>
+        </div>
+        
+        <div class="team-card">
+            <div class="member-avatar">S</div>
+            <h3>Sam</h3>
+            <p class="role">Growth Hacker</p>
+            <p class="model">🤖 DuckDuckGo + Llama 3.3</p>
+            <p class="description">실시간 트렌드를 포착하고 사용자를 끌어오는 마케터</p>
+            <div class="skills"><span class="skill">트렌드 분석</span> <span class="skill">SEO</span> <span class="skill">바이럴 마케팅</span> <span class="skill">데이터 분석</span></div>
         </div>
         
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Achievements -->
-    <section style="background: var(--dark-light);">
-        <div class="container">
-            <h2>Our Impact</h2>
-            <div class="achievements">
+        <!-- Projects -->
+        <section>
+            <h2>🚀 Viral Projects We Build</h2>
+            <div class="projects-grid">
                 
-        <div class="achievement">
-            <div class="number">50+</div>
-            <div class="label">완료 프로젝트</div>
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🗞️ Dev Daily - 개발자 일일 뉴스레터</h3>
+                <div class="viral-badge">🔥 바이럴 점수: 9/10</div>
+            </div>
+            <p class="description">AI가 매일 아침 GitHub, Hacker News, Reddit을 분석해서 개발자에게 꼭 필요한 뉴스만 3분 분량으로 큐레이션합니다.</p>
+            <div class="project-stats">
+                <span>🎯 타겟: 50만+ 개발자</span>
+                <span>⏱️ 개발: 2주</span>
+            </div>
+            <div class="tech-stack"><span class="tech">Python</span> <span class="tech">FastAPI</span> <span class="tech">React</span> <span class="tech">DuckDuckGo</span> <span class="tech">Email API</span></div>
+            <ul class="features"><li>매일 아침 7시 자동 발송</li><li>AI 기반 중요도 순위</li><li>카테고리별 필터 (Frontend, Backend, AI)</li><li>읽는 시간 3분 이내</li><li>아카이브 검색</li><li>모바일 최적화</li></ul>
+            <div class="growth">
+                <strong>성장 전략:</strong> Reddit, Hacker News, ProductHunt 런칭
+            </div>
+            <div class="monetization">💰 무료 + 프리미엄 $5/월</div>
         </div>
         
-        <div class="achievement">
-            <div class="number">30+</div>
-            <div class="label">파트너 기업</div>
+        <div class="project-card">
+            <div class="project-header">
+                <h3>💻 Code Vault - 코드 스니펫 마켓플레이스</h3>
+                <div class="viral-badge">🔥 바이럴 점수: 10/10</div>
+            </div>
+            <p class="description">개발자들이 자주 쓰는 코드 스니펫을 저장하고 공유하는 플랫폼. AI가 자동으로 태깅하고 검색을 도와드립니다.</p>
+            <div class="project-stats">
+                <span>🎯 타겟: 100만+ 개발자</span>
+                <span>⏱️ 개발: 3주</span>
+            </div>
+            <div class="tech-stack"><span class="tech">Next.js</span> <span class="tech">Supabase</span> <span class="tech">Tailwind</span> <span class="tech">AI Tagging</span></div>
+            <ul class="features"><li>원클릭 코드 복사</li><li>AI 자동 태깅</li><li>언어별/프레임워크별 필터</li><li>GitHub Gist 연동</li><li>실시간 코드 실행</li><li>다크/라이트 테마</li></ul>
+            <div class="growth">
+                <strong>성장 전략:</strong> GitHub 트렌딩, Dev.to, Twitter
+            </div>
+            <div class="monetization">💰 무료 + 프리미엄 $3/월</div>
         </div>
         
-        <div class="achievement">
-            <div class="number">99.9%</div>
-            <div class="label">고객 만족도</div>
-        </div>
-        
-        <div class="achievement">
-            <div class="number">5M+</div>
-            <div class="label">처리 요청 수</div>
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🎯 AI Interview Coach - AI 면접 준비</h3>
+                <div class="viral-badge">🔥 바이럴 점수: 10/10</div>
+            </div>
+            <p class="description">실제 기업 면접 데이터를 학습한 AI가 1:1 모의 면접을 진행하고 실시간 피드백을 제공합니다.</p>
+            <div class="project-stats">
+                <span>🎯 타겟: 200만+ 구직자</span>
+                <span>⏱️ 개발: 4주</span>
+            </div>
+            <div class="tech-stack"><span class="tech">React</span> <span class="tech">FastAPI</span> <span class="tech">Groq/OpenAI</span> <span class="tech">Speech-to-Text</span></div>
+            <ul class="features"><li>직무별 맞춤 질문</li><li>음성/텍스트 면접</li><li>AI 실시간 피드백</li><li>답변 개선 제안</li><li>기업별 면접 스타일</li><li>진행도 트래킹</li></ul>
+            <div class="growth">
+                <strong>성장 전략:</strong> 유튜브 광고, 대학 커뮤니티, SEO
+            </div>
+            <div class="monetization">💰 무료 3회 + $9.99/월</div>
         </div>
         
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact -->
-    <section>
-        <div class="container contact">
-            <h2 id="contact">Contact Us</h2>
-            <p>AI 기술로 비즈니스를 혁신하고 싶으신가요?<br>언제든 문의해주세요.</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    📧 <a href="mailto:contact@neuroflow.ai" style="color: var(--primary); text-decoration: none;">contact@neuroflow.ai</a>
-                </div>
-                <div class="contact-item">
-                    🌐 <a href="https://github.com/chosundeveloper/ai-dev-team" style="color: var(--primary); text-decoration: none;" target="_blank">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- CTA -->
+        <section style="text-align: center; background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(220,38,38,0.1)); padding: 4rem 2rem; border-radius: 20px;">
+            <h2>Ready to Go Viral?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #cbd5e1;">
+                바이럴 제품을 2-4주 안에 빠르게 만들어드립니다
+            </p>
+            <a href="https://github.com/chosundeveloper/ai-dev-team"
+               style="display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(135deg, #f59e0b, #dc2626); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem;">
+                GitHub 보기 →
+            </a>
+        </section>
+    </div>
 
-    <!-- Footer -->
     <footer>
-        <p><strong>NeuroFlow AI</strong> © 2024- 2025. All Rights Reserved.</p>
-        <p>Powered by LangGraph × Groq × AI Multi-Agent Systems</p>
-        <p class="tech-stack">🤖 AI-First Company | Built with AI Technology</p>
+        <p><strong>Spark Labs</strong> - Building Products That Go Viral</p>
+        <p>Powered by LangGraph × Groq × Claude × Multi-Agent AI</p>
     </footer>
-
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.service-card, .team-member, .achievement').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
