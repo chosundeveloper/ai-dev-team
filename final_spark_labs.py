@@ -229,75 +229,43 @@ def create_final_page():
             margin-bottom: 1rem;
         }
 
-        /* Build Plan */
-        .plan-section {
+        /* Run Now */
+        .run-section {
             background: rgba(15,23,42,0.6);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 20px;
             padding: 3rem 2rem;
             margin-bottom: 5rem;
         }
-        .plan-grid {
+        .run-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
         }
-        .plan-step {
+        .run-card {
             background: rgba(255,255,255,0.04);
             border-radius: 16px;
             padding: 1.5rem;
             border: 1px solid rgba(255,255,255,0.08);
         }
-        .plan-step h3 {
+        .run-card h3 {
             font-size: 1.2rem;
             color: #f59e0b;
             margin-bottom: 0.5rem;
         }
-        .plan-milestone {
+        .run-card p {
             font-size: 0.95rem;
             color: #cbd5e1;
             margin-bottom: 0.75rem;
         }
-        .plan-owners {
-            font-size: 0.85rem;
-            color: #38bdf8;
-            font-weight: 600;
-        }
-
-        /* Build Report */
-        .report-section {
-            background: rgba(99,102,241,0.08);
+        .run-card pre {
+            background: rgba(15,23,42,0.8);
+            padding: 0.8rem;
+            border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            margin-bottom: 5rem;
-        }
-        .report-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .report-card {
-            background: rgba(15,23,42,0.6);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .report-card h3 {
-            font-size: 1.1rem;
-            color: #f59e0b;
-            margin-bottom: 0.5rem;
-        }
-        .report-card p,
-        .report-card ul {
-            font-size: 0.95rem;
-            color: #cbd5e1;
-            line-height: 1.5;
-        }
-        .report-card ul {
-            list-style: disc;
-            margin-left: 1.25rem;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            overflow-x: auto;
         }
 
         /* Contributions */
@@ -363,8 +331,8 @@ def create_final_page():
                 사용자가 열광하는 바이럴 제품을 2-4주 안에 만듭니다
             </p>
             <div class="hero-actions">
-                <a class="primary" href="#build-plan">🧭 Build Plan 보기</a>
-                <a class="secondary" href="#build-report">📝 Build Report 보기</a>
+                <a class="primary" href="#run-now">🛠️ Run It Now</a>
+                <a class="secondary" href="#contributors">👥 팀 기여 보기</a>
             </div>
         </div>
 
@@ -557,71 +525,28 @@ def create_final_page():
             </div>
         </section>
 
-        <!-- Build Plan -->
-        <section id="build-plan" class="plan-section">
-            <h2>🧭 Build Plan</h2>
-            <p style="text-align: center; font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem;">
-                지금 실제로 돌리고 있는 <strong>AI 팀 포트폴리오 퍼블리셔</strong> 제작 순서입니다. (전체 리드타임: 15분 이내)
-            </p>
-            <div class="plan-grid">
-                <div class="plan-step">
-                    <h3>Step 1 · Brief Intake</h3>
-                    <p class="plan-milestone">요구사항/톤/색상 입력 정리 (2분)</p>
-                    <p class="plan-owners">Owners · Alex (PM)</p>
-                </div>
-                <div class="plan-step">
-                    <h3>Step 2 · Layout & Palette</h3>
-                    <p class="plan-milestone">페이지 레이아웃 + 컬러 시스템 확정 (4분)</p>
-                    <p class="plan-owners">Owners · Maya (Design)</p>
-                </div>
-                <div class="plan-step">
-                    <h3>Step 3 · Frontend Build</h3>
-                    <p class="plan-milestone">완전한 HTML/CSS/애니메이션 작성 (6분)</p>
-                    <p class="plan-owners">Owners · Chris (FE), 라Codex (Execution)</p>
-                </div>
-                <div class="plan-step">
-                    <h3>Step 4 · QA & Polish</h3>
-                    <p class="plan-milestone">반응형 체크, 카피 정리, CTA 연결 (2분)</p>
-                    <p class="plan-owners">Owners · 라Codex (QA), Sam (Growth)</p>
-                </div>
-                <div class="plan-step">
-                    <h3>Step 5 · Publish & Share</h3>
-                    <p class="plan-milestone">GitHub Pages 배포 + 링크 공유 (1분)</p>
-                    <p class="plan-owners">Owners · Claude (Lead Dev), 라Codex (Execution)</p>
-                </div>
-            </div>
-        </section>
 
-        <!-- Build Report -->
-        <section id="build-report" class="report-section">
-            <h2>📝 Build Report</h2>
-            <p style="text-align: center; font-size: 1.05rem; color: #cbd5e1;">
-                방금 실행한 <strong>AI 팀 포트폴리오 퍼블리셔</strong> 결과 보고입니다.
+        <!-- Run Now Section -->
+        <section id="run-now" class="run-section">
+            <h2>🛠️ Run It Now</h2>
+            <p style="text-align: center; font-size: 1.05rem; color: #cbd5e1; margin-bottom: 2rem;">
+                아래 명령만 실행하면 즉시 같은 결과물을 얻을 수 있습니다.
             </p>
-            <div class="report-grid">
-                <div class="report-card">
-                    <h3>What we ship</h3>
-                    <p>`team_portfolio.html` + 동일 스타일의 `index.html` (즉시 배포 가능).</p>
+            <div class="run-grid">
+                <div class="run-card">
+                    <h3>AI 팀 포트폴리오 퍼블리셔</h3>
+                    <p>5개 에이전트가 협업해 완전한 소개 페이지(`team_portfolio.html`)를 생성합니다.</p>
+                    <pre>python3 create_team_page.py&#10;open team_portfolio.html</pre>
                 </div>
-                <div class="report-card">
-                    <h3>Why it matters</h3>
-                    <ul>
-                        <li>팀 역량·워크플로우를 투명하게 보여주는 레퍼런스</li>
-                        <li>투자자/고객에게 즉시 공유 가능한 자산</li>
-                    </ul>
+                <div class="run-card">
+                    <h3>AI 웹사이트 기획서 메이커</h3>
+                    <p>시장조사→기획→PM 단계를 자동으로 돌려 `final_plan.md`를 저장합니다.</p>
+                    <pre>python3 main.py&#10;open final_plan.md</pre>
                 </div>
-                <div class="report-card">
-                    <h3>Timeline</h3>
-                    <p>총 15분. 0-2분 브리프 → 2-6분 디자인 → 6-12분 프론트엔드 → 12-14분 QA → 14-15분 배포.</p>
-                </div>
-                <div class="report-card">
-                    <h3>Owners & stack</h3>
-                    <ul>
-                        <li>Alex — 요구사항 브리핑</li>
-                        <li>Maya — 레이아웃/컬러</li>
-                        <li>Chris + 라Codex — HTML/CSS 작성</li>
-                        <li>Claude — 배포 & Git 관리</li>
-                    </ul>
+                <div class="run-card">
+                    <h3>Launch Snapshot (이 페이지)</h3>
+                    <p>소개 페이지(`index.html`)를 최신 정보로 재생성해 바로 공유할 수 있습니다.</p>
+                    <pre>python3 final_spark_labs.py&#10;open index.html</pre>
                 </div>
             </div>
         </section>

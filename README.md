@@ -230,15 +230,27 @@ AI 개발팀이 스스로 소개 페이지를 제작
 
 ## 🔍 지금 무엇을 만들고 있나요?
 
-- **핵심 결과물**: `AI 팀 포트폴리오 퍼블리셔` — PM/디자이너/프론트 에이전트가 협업해 `team_portfolio.html`을 15분 내 완성하는 자동 퍼블리셔 (즉시 실행 중)
-- **보조 결과물**: `AI 웹사이트 기획서 메이커` — LangGraph 멀티 에이전트가 시장조사→경쟁분석→아이디어→평가→PM 단계를 거쳐 `final_plan.md`를 바로 생성
-- **어디서 확인?** `index.html` 또는 배포된 팀 페이지의 **🧭 Build Plan / 📝 Build Report** 섹션에서 순서·담당자·산출물을 볼 수 있습니다.
-- **실행 단계 요약 (15분)**
-  - Step 1 · Brief Intake (2분) — Alex가 요구사항/톤/색상 정리
-  - Step 2 · Layout & Palette (4분) — Maya가 레이아웃과 컬러 토큰 확정
-  - Step 3 · Frontend Build (6분) — Chris와 라Codex가 HTML/CSS/애니메이션 작성
-  - Step 4 · QA & Polish (2분) — 라Codex·Sam이 반응형·카피·CTA를 검수
-  - Step 5 · Publish & Share (1분) — Claude·라Codex가 GitHub Pages에 바로 배포
+- **핵심 결과물**: `AI 팀 포트폴리오 퍼블리셔` — 5개 에이전트가 `team_portfolio.html`을 바로 만들어 줍니다.
+- **보조 결과물**: `AI 웹사이트 기획서 메이커` — 시장조사→경쟁분석→기획→PM 단계를 거쳐 `final_plan.md`를 바로 생성합니다.
+- **Launch Snapshot**: `final_spark_labs.py` 실행으로 소개 페이지(`index.html`)를 재생성해 최신 정보를 즉시 반영합니다.
+
+## 🛠️ 지금 바로 실행하기
+
+1. **AI 팀 포트폴리오 퍼블리셔**
+   ```bash
+   python3 create_team_page.py
+   open team_portfolio.html
+   ```
+2. **AI 웹사이트 기획서 메이커**
+   ```bash
+   python3 main.py
+   open final_plan.md
+   ```
+3. **Launch Snapshot (소개 페이지 재생성)**
+   ```bash
+   python3 final_spark_labs.py
+   open index.html
+   ```
 
 ### 👥 누가 뭘 기여했나요?
 - **Alex (PM)**: 요구사항 브리핑, Build Plan 설계, README 실행 요약
