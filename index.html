@@ -292,6 +292,37 @@
             list-style: disc;
             margin-left: 1.25rem;
         }
+
+        /* Contributions */
+        .contrib-section {
+            background: rgba(15,23,42,0.6);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin-bottom: 5rem;
+        }
+        .contrib-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .contrib-card {
+            background: rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .contrib-card h3 {
+            font-size: 1.05rem;
+            color: #38bdf8;
+            margin-bottom: 0.5rem;
+        }
+        .contrib-card ul {
+            list-style: disc;
+            margin-left: 1.25rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
         .viral-badge {
             display: inline-block;
             background: linear-gradient(135deg, #dc2626, #f59e0b);
@@ -583,6 +614,59 @@
                         <li>Maya — 레이아웃/컬러</li>
                         <li>Chris + 라Codex — HTML/CSS 작성</li>
                         <li>Claude — 배포 & Git 관리</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contributions -->
+        <section id="contributors" class="contrib-section">
+            <h2>👥 누가 무엇을 기여했나요?</h2>
+            <p style="text-align: center; font-size: 1rem; color: #cbd5e1; margin-bottom: 2rem;">
+                이번 AI 팀 포트폴리오 퍼블리셔 실행에서 각 역할이 담당한 범위입니다.
+            </p>
+            <div class="contrib-grid">
+                <div class="contrib-card">
+                    <h3>Alex · PM</h3>
+                    <ul>
+                        <li>요구사항/톤 브리프 정리</li>
+                        <li>Build Plan 단계 정의</li>
+                        <li>README 실행 요약 작성</li>
+                    </ul>
+                </div>
+                <div class="contrib-card">
+                    <h3>Maya · Design</h3>
+                    <ul>
+                        <li>레이아웃·컬러 토큰 선정</li>
+                        <li>Hero/섹션 배치 가이드 제공</li>
+                    </ul>
+                </div>
+                <div class="contrib-card">
+                    <h3>Chris · Frontend</h3>
+                    <ul>
+                        <li>HTML/CSS 구조 구현</li>
+                        <li>애니메이션·반응형 세부 조정</li>
+                    </ul>
+                </div>
+                <div class="contrib-card">
+                    <h3>라Codex · Execution</h3>
+                    <ul>
+                        <li>실제 파일 편집 & 테스트</li>
+                        <li>Git 커밋/배포 파이프라인 운영</li>
+                    </ul>
+                </div>
+                <div class="contrib-card">
+                    <h3>Claude · Lead Dev</h3>
+                    <ul>
+                        <li>LangGraph 워크플로우 총괄</li>
+                        <li>final_spark_labs.py 및 README 지휘</li>
+                    </ul>
+                </div>
+                <div class="contrib-card">
+                    <h3>Sam · Growth</h3>
+                    <ul>
+                        <li>카피·CTA 검수</li>
+                        <li>보고서 공유 시나리오 작성</li>
                     </ul>
                 </div>
             </div>

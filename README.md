@@ -240,6 +240,14 @@ AI 개발팀이 스스로 소개 페이지를 제작
   - Step 4 · QA & Polish (2분) — 라Codex·Sam이 반응형·카피·CTA를 검수
   - Step 5 · Publish & Share (1분) — Claude·라Codex가 GitHub Pages에 바로 배포
 
+### 👥 누가 뭘 기여했나요?
+- **Alex (PM)**: 요구사항 브리핑, Build Plan 설계, README 실행 요약
+- **Maya (Design)**: 레이아웃/컬러 토큰, Hero·섹션 배치 가이드
+- **Chris (Frontend)**: HTML/CSS 구조, 애니메이션·반응형 폴리싱
+- **라Codex (Execution)**: 실제 파일 편집·테스트, Git 커밋/배포
+- **Claude (Lead Dev)**: LangGraph 워크플로우 총괄, 최종 페이지 생성 스크립트 관리
+- **Sam (Growth)**: 카피·CTA 검수, Build Report 공유 시나리오
+
 ## 📚 더 알아보기
 
 - **[TEAM_README.md](TEAM_README.md)** - 팀 상세 소개 및 활용법
