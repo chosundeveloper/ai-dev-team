@@ -1,0 +1,263 @@
+# 🤖 AI 개발팀 - LangGraph 멀티 에이전트 시스템
+
+> **조회수 높은 웹사이트를 자동으로 기획하고 개발하는 AI 팀**
+
+[![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?logo=github)](https://github.com)
+[![LangGraph](https://img.shields.io/badge/LangGraph-1.0-green)](https://github.com/langchain-ai/langgraph)
+[![Groq](https://img.shields.io/badge/Groq-Free-orange)](https://groq.com)
+
+**🌐 [팀 포트폴리오 보기](./team_portfolio.html)** | **📖 [배포 가이드](./DEPLOY.md)** | **📚 [팀 소개](./TEAM_README.md)**
+
+---
+
+## 👥 우리 팀을 소개합니다
+
+### **Alex** - Product Manager
+- **AI 파트너**: Llama 3.3 70B
+- **전문 분야**: 전략 기획, 요구사항 분석, 시장 조사
+- **역할**: 팀의 비전을 설정하고 프로젝트를 이끄는 전략가
+
+### **Maya** - UI/UX Designer
+- **AI 파트너**: Llama 3.3 70B
+- **전문 분야**: UI 디자인, 사용자 경험, 프로토타이핑
+- **역할**: 아름답고 직관적인 인터페이스를 설계
+
+### **Chris** - Frontend Developer
+- **AI 파트너**: Llama 3.3 70B
+- **전문 분야**: React, TypeScript, HTML/CSS, Next.js
+- **역할**: 사용자가 보는 모든 것을 완벽하게 구현
+
+### **Jordan** - Backend Developer
+- **AI 파트너**: Mixtral 8x7b
+- **전문 분야**: Python, FastAPI, PostgreSQL, Docker
+- **역할**: 탄탄한 서버 로직과 API 구축
+
+### **Sam** - Market Researcher
+- **AI 파트너**: DuckDuckGo + Llama 3.3
+- **전문 분야**: 시장 조사, 트렌드 분석, 경쟁 분석
+- **역할**: 실시간 시장 데이터로 인사이트 제공
+
+---
+
+## 🎯 우리가 하는 일
+
+### 1️⃣ 웹사이트 기획 시스템
+
+5개의 전문 에이전트가 협업하여 웹사이트 아이디어를 기획합니다:
+
+1. **시장조사 에이전트** - 트렌드 분석, 인기 키워드 조사
+2. **경쟁분석 에이전트** - 유사 사이트 분석, 차별화 포인트
+3. **기획 에이전트** - 아이디어 생성, 기능 명세
+4. **평가 에이전트** - 바이럴 가능성, 구현 난이도, SEO 평가
+5. **PM 에이전트** - 최종 기획서 작성, 우선순위 정리
+
+### 2️⃣ 팀 포트폴리오 자동 생성
+
+AI 개발팀이 스스로 소개 페이지를 만듭니다:
+- PM이 팀 구성 및 프로젝트 아이디어 기획
+- Designer가 페이지 디자인 수립
+- Frontend가 완전한 HTML/CSS/JS 코드 작성
+
+**👉 [생성된 팀 포트폴리오 보기](./team_portfolio.html)**
+
+## 🛠️ 설치 방법
+
+### 1. Groq API 키 발급 (무료!)
+
+1. https://console.groq.com 접속
+2. 가입/로그인
+3. API Keys 메뉴에서 새 키 생성
+4. 복사한 키를 `.env` 파일에 입력
+
+```bash
+# .env 파일 수정
+GROQ_API_KEY=여기에_발급받은_키_입력
+```
+
+### 2. 가상환경 활성화
+
+```bash
+source venv/bin/activate
+```
+
+## 🚀 실행 방법
+
+### 웹사이트 기획 시스템
+
+```bash
+# 완전한 기획서 생성
+python main.py
+
+# 빠른 테스트
+python test_simple.py
+```
+
+### 팀 포트폴리오 생성
+
+```bash
+# 데모 페이지 생성 (API 불필요)
+python demo_team_page.py
+
+# AI 에이전트로 생성 (API 필요)
+python create_team_page.py
+```
+
+### GitHub Pages 배포
+
+```bash
+# Git 초기화 및 배포
+git init
+git add .
+git commit -m "🚀 Initial commit"
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git push -u origin main
+```
+
+**상세 배포 가이드**: [DEPLOY.md](./DEPLOY.md)
+
+## 💡 사용 예제
+
+`main.py`의 마지막 부분을 수정하여 원하는 웹사이트를 기획할 수 있습니다:
+
+```python
+user_input = """
+당신이 만들고 싶은 웹사이트 설명
+"""
+
+constraints = """
+- 개발 기간: X개월
+- 예산: XX만원
+- 기타 제약조건
+"""
+```
+
+## 📋 워크플로우
+
+```
+입력 (관심사/제약조건)
+  ↓
+시장조사 (트렌드 분석)
+  ↓
+경쟁분석 (차별화 포인트)
+  ↓
+아이디어 생성 (기획)
+  ↓
+평가 (바이럴 가능성, SEO 등)
+  ↓
+개선 반복 (필요시)
+  ↓
+최종 기획서 출력
+```
+
+## 🔧 LLM 제공자 변경
+
+`.env` 파일에서 변경 가능:
+
+- `LLM_PROVIDER=groq` (기본, 무료)
+- `LLM_PROVIDER=openai` (GPT-4o-mini)
+- `LLM_PROVIDER=anthropic` (Claude 3.5)
+
+## 📁 프로젝트 구조
+
+```
+langGraph/
+├── .env                          # API 키 설정
+├── .gitignore                    # Git 제외 파일
+├── .github/
+│   └── workflows/
+│       └── deploy.yml            # GitHub Actions 배포
+│
+├── 📋 기획 시스템
+│   ├── main.py                   # 웹사이트 기획 메인
+│   ├── state.py                  # 공유 상태 정의
+│   ├── test_simple.py            # 빠른 테스트
+│   └── agents/                   # 기획 에이전트
+│       ├── market_research.py
+│       ├── competitive_analysis.py
+│       ├── idea_generator.py
+│       ├── evaluator.py
+│       └── pm.py
+│
+├── 👥 개발팀 시스템
+│   ├── demo_team_page.py         # 데모 페이지 생성
+│   ├── create_team_page.py       # AI 자동 생성
+│   ├── dev_team_state.py         # 팀 상태 정의
+│   └── dev_agents/               # 개발 에이전트
+│       ├── pm_agent.py
+│       ├── designer_agent.py
+│       └── frontend_agent.py
+│
+├── 🌐 결과물
+│   └── team_portfolio.html       # 생성된 팀 페이지
+│
+└── 📚 문서
+    ├── README.md                 # 프로젝트 설명
+    ├── DEPLOY.md                 # 배포 가이드
+    ├── SETUP.md                  # 설치 가이드
+    └── TEAM_README.md            # 팀 상세 소개
+```
+
+## ✨ 핵심 특징
+
+### 🤖 멀티 에이전트 협업
+- 각 팀원이 서로 다른 AI 모델 사용
+- 전문 분야별 최적화된 파트너 배정
+- LangGraph로 워크플로우 자동 관리
+
+### 💰 완전 무료
+- Groq API 무료 티어 사용
+- DuckDuckGo 무료 검색
+- GitHub Pages 무료 호스팅
+- GitHub Actions 무료 배포
+
+### ⚡ 빠른 개발
+- 2-4주 내 MVP 완성
+- 자동 기획서 생성
+- 원클릭 배포
+
+### 🎨 실제 결과물
+- 완전한 HTML/CSS/JS 코드
+- 반응형 디자인
+- 프로덕션 레디
+
+## 🚀 우리가 만든 것
+
+### ✅ AI 웹사이트 기획 도구
+조회수 높은 웹사이트를 자동으로 기획
+
+### ✅ 팀 포트폴리오 생성기
+AI 개발팀이 스스로 소개 페이지를 제작
+
+### 🔜 다음 프로젝트
+- No-Code AI 챗봇 빌더
+- 개발자 생산성 대시보드
+
+## 📚 더 알아보기
+
+- **[TEAM_README.md](TEAM_README.md)** - 팀 상세 소개 및 활용법
+- **[DEPLOY.md](DEPLOY.md)** - GitHub Pages 배포 가이드
+- **[SETUP.md](SETUP.md)** - 설치 및 문제 해결
+- **[LangGraph 공식 문서](https://langchain-ai.github.io/langgraph/)**
+- **[Groq 문서](https://console.groq.com/docs)**
+
+---
+
+## 🤝 기여하기
+
+이 프로젝트는 LangGraph 멀티 에이전트 시스템의 예제입니다.
+- Issues: 버그 리포트 및 기능 제안
+- Pull Requests: 환영합니다!
+
+## 📄 라이센스
+
+MIT License - 자유롭게 사용하세요!
+
+---
+
+<div align="center">
+
+**Made with ❤️ by AI Dev Team**
+
+🤖 **Powered by** LangGraph × Groq × GitHub Actions
+
+</div>
