@@ -286,6 +286,13 @@ python3 report_manager.py respond --id <보고ID> --status needs_changes --feedb
 
 - 이렇게 하면 팀이 자동으로 보고를 올리고, 사용자는 `approved / needs_changes` 같은 응답을 남겨 워크플로우를 이어갈 수 있습니다.
 
+### 회의용 요약 생성
+- 여러 보고를 묶어서 회의 기록을 만들고 싶다면 `meeting_manager.py`를 사용하세요.
+```bash
+python3 meeting_manager.py --title "Daily Sync" --notes "CTA 색상 확정" --status pending
+```
+- `meetings/meeting-*.md` 파일이 생성되며, 선정된 보고 내용을 한눈에 공유할 수 있습니다.
+
 ### 👥 누가 뭘 기여했나요?
 - **Alex (PM)**: 요구사항 브리핑, Build Plan 설계, README 실행 요약
 - **Maya (Design)**: 레이아웃/컬러 토큰, Hero·섹션 배치 가이드
