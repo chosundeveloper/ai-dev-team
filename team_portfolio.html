@@ -36,6 +36,35 @@
             animation: fadeInDown 1s ease;
         }
 
+        .hero-actions {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-actions a {
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .hero-actions a.primary {
+            background: rgba(0, 0, 0, 0.3);
+            border-color: transparent;
+        }
+
+        .hero-actions a.secondary:hover,
+        .hero-actions a.primary:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -257,6 +286,95 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Build Plan */
+        .plan-section {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin-bottom: 5rem;
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.15);
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .plan-step {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .plan-step h3 {
+            font-size: 1.15rem;
+            color: #a78bfa;
+            margin-bottom: 0.6rem;
+        }
+
+        .plan-milestone {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-owners {
+            font-size: 0.85rem;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .plan-output {
+            font-size: 0.85rem;
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .plan-output span {
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        /* Build Report */
+        .report-section {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .report-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .report-card h3 {
+            font-size: 1.05rem;
+            color: #f472b6;
+            margin-bottom: 0.4rem;
+        }
+
+        .report-card ul {
+            list-style: disc;
+            margin-left: 1.25rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
         /* Contact */
         .contact {
             text-align: center;
@@ -333,6 +451,10 @@
                 서로 다른 AI 모델을 가진 5명의 전문가가 협업하여<br>
                 당신의 아이디어를 완전한 웹 서비스로 만들어드립니다
             </p>
+            <div class="hero-actions">
+                <a class="primary" href="#plan">🧭 Build Plan 보기</a>
+                <a class="secondary" href="#report">📝 Build Report 보기</a>
+            </div>
         </div>
 
         <!-- Team Section -->
@@ -417,6 +539,80 @@
             <div class="timeline">⏱️ 개발 기간: 4주</div>
         </div>
         
+            </div>
+        </section>
+
+        <!-- Build Plan Section -->
+        <section id="plan" class="plan-section">
+            <h2>🧭 Build Plan</h2>
+            <p style="text-align: center; font-size: 1.05rem; color: #cbd5e1; margin-bottom: 2rem;">
+                현재 진행 중인 2주 스프린트: <strong>Dev Daily</strong> (개발자 3분 뉴스레터)를 어떻게 출시하는지 단계별로 공개합니다.
+            </p>
+            <div class="plan-grid">
+                <div class="plan-step">
+                    <h3>Step 1 · Discovery</h3>
+                    <p class="plan-milestone">문제 정의, KPI, 3분 요약 포맷 확정 (Day 1-2)</p>
+                    <p class="plan-owners">Owners · Alex (PM), Sam (Growth)</p>
+                    <p class="plan-output">Output · <span>고객 페르소나, KPI 트래킹 시트, 3분 요약 템플릿 초안</span></p>
+                </div>
+                <div class="plan-step">
+                    <h3>Step 2 · Experience Design</h3>
+                    <p class="plan-milestone">이메일 템플릿, 다크/라이트 테마, 구독 플로우 설계 (Day 2-4)</p>
+                    <p class="plan-owners">Owners · Maya (Design), Alex (PM)</p>
+                    <p class="plan-output">Output · <span>Figma 템플릿, 구독 온보딩 와이어, 톤 & 스타일 가이드</span></p>
+                </div>
+                <div class="plan-step">
+                    <h3>Step 3 · Build & Automation</h3>
+                    <p class="plan-milestone">스크래퍼 + 요약 파이프라인 + 발송 스케줄러 구현 (Day 4-9)</p>
+                    <p class="plan-owners">Owners · Claude (Lead Dev), 라Codex (Execution), Chris (FE), Jordan (BE)</p>
+                    <p class="plan-output">Output · <span>GitHub/ HN/ Reddit 크롤러, 요약 LLM 파이프라인, Cron 발송기</span></p>
+                </div>
+                <div class="plan-step">
+                    <h3>Step 4 · QA & Launch</h3>
+                    <p class="plan-milestone">테스트/모니터링, 온보딩 페이지, Product Hunt·HN 런치 키트 (Day 9-12)</p>
+                    <p class="plan-owners">Owners · 라Codex (QA), Sam (Growth), Chris (FE)</p>
+                    <p class="plan-output">Output · <span>테스트 리포트, 온보딩 페이지 배포, 런치 자산(이미지/카피)</span></p>
+                </div>
+                <div class="plan-step">
+                    <h3>Step 5 · Growth Loops</h3>
+                    <p class="plan-milestone">추천 프로그램, 공유 배지, 뉴스레터 내 CTA 실험 (Day 12-14)</p>
+                    <p class="plan-owners">Owners · Sam (Growth), Alex (PM), Claude (Automation)</p>
+                    <p class="plan-output">Output · <span>추천 링크 시스템, 공유 배지 세트, CTA 실험 대시보드</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Build Report Section -->
+        <section id="report" class="report-section">
+            <h2>📝 Build Report</h2>
+            <p style="text-align: center; font-size: 1.05rem; color: #cbd5e1;">
+                한눈에 보는 Dev Daily 스프린트 보고서: 무엇을, 왜, 언제, 누가 만듭니다.
+            </p>
+            <div class="report-grid">
+                <div class="report-card">
+                    <h3>What we ship</h3>
+                    <p>Dev Daily — GitHub·Hacker News·Reddit 데이터를 매일 아침 3분 분량으로 큐레이션하는 개발자 뉴스레터.</p>
+                </div>
+                <div class="report-card">
+                    <h3>Why it matters</h3>
+                    <ul>
+                        <li>정보 과부하를 줄이고 공유하기 쉬운 포맷</li>
+                        <li>커뮤니티 채널(HN/Reddit)에 특화된 바이럴 소재</li>
+                    </ul>
+                </div>
+                <div class="report-card">
+                    <h3>Timeline</h3>
+                    <p>Day 1-14 (2주). 3일마다 리뷰, Day 12 Product Hunt/HN 런칭, Day 14 추천 프로모션.</p>
+                </div>
+                <div class="report-card">
+                    <h3>Owners & Stack</h3>
+                    <ul>
+                        <li>Alex · Sam — 전략/성장, KPI</li>
+                        <li>Maya — 이메일 템플릿 및 UX</li>
+                        <li>Claude + 라Codex — 파이프라인 / QA</li>
+                        <li>Chris + Jordan — 프론트엔드·백엔드 자동화</li>
+                    </ul>
+                </div>
             </div>
         </section>
 

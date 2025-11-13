@@ -228,6 +228,17 @@ langGraph/
 ### ✅ 팀 포트폴리오 생성기
 AI 개발팀이 스스로 소개 페이지를 제작
 
+## 🔍 지금 무엇을 만들고 있나요?
+
+- **핵심 결과물**: `Dev Daily` — 매일 아침 3분 만에 읽는 개발자 전용 AI 큐레이션 뉴스레터 (2주 내 MVP)
+- **어디서 확인?** `index.html` 혹은 배포한 팀 페이지의 **🧭 Build Plan** 섹션에서 순서/담당자/일정을 한눈에 확인할 수 있습니다.
+- **요약 역할 분담**
+  - Step 1 · Discovery (Day 1-2): 문제 정의·KPI — Alex (PM), Sam (Growth)
+  - Step 2 · Experience Design (Day 2-4): 이메일 템플릿·구독 UX — Maya (Design), Alex
+  - Step 3 · Build & Automation (Day 4-9): 스크래퍼·요약 파이프라인·발송기 — Claude (Lead Dev), 라Codex (Execution), Chris (FE), Jordan (BE)
+  - Step 4 · QA & Launch (Day 9-12): 테스트·온보딩·런치 키트 — 라Codex (QA), Sam, Chris
+  - Step 5 · Growth Loops (Day 12-14): 추천 프로그램·CTA 실험 — Sam, Alex, Claude
+
 ### 🔜 다음 프로젝트
 - No-Code AI 챗봇 빌더
 - 개발자 생산성 대시보드
@@ -258,6 +269,6 @@ MIT License - 자유롭게 사용하세요!
 
 **Made with ❤️ by AI Dev Team**
 
-🤖 **Powered by** LangGraph × Groq × GitHub Actions
+🤖 **Powered by** LangGraph × Groq × Claude × 라Codex × GitHub Actions
 
 </div>

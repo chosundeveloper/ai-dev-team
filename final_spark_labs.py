@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+"""
+Spark Labs - Groq과 Claude를 제대로 소개
+"""
+
+def create_final_page():
+    """Groq과 Claude를 포함한 최종 팀 페이지"""
+
+    html = """<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -617,4 +624,15 @@
         </p>
     </footer>
 </body>
-</html>
+</html>"""
+
+    with open('index.html', 'w', encoding='utf-8') as f:
+        f.write(html)
+
+    print("✅ Spark Labs 최종 페이지 생성 완료!")
+    print("📄 Groq, Claude, 라Codex를 Infrastructure로 명확히 소개")
+    print("👥 5명의 AI 에이전트 (Groq 엔진 사용)")
+    print("🚀 3개의 바이럴 프로젝트")
+
+if __name__ == "__main__":
+    create_final_page()

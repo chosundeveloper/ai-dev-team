@@ -18,6 +18,11 @@
 | **Jordan** | Backend | Mixtral 8x7b | API, 서버 |
 | **Sam** | Researcher | DuckDuckGo + Llama | 시장조사 |
 
+### ⚙️ 인프라 & 실행
+- **Groq** — Llama/Mixtral 엔진을 제공하는 초고속 LPU 클러스터
+- **Claude** — LangGraph 워크플로우를 설계하고 전체 코드를 작성하는 총괄 개발자
+- **라Codex** — 로컬 repo를 직접 편집·테스트하는 실행형 Codex CLI (GPT-5)
+
 ## 🚀 실행 방법
 
 ### 1. API 키 설정
@@ -64,6 +69,13 @@ open team_portfolio.html
 - 완전한 HTML 페이지
 - 반응형 CSS
 - 인터랙티브 JavaScript
+  ↓
+[라Codex]
+  ↓
+로컬 편집/테스트/QA
+- Codex CLI로 코드 적용
+- Git 상태/테스트 확인
+- 산출물 저장
   ↓
 ✅ team_portfolio.html 생성!
 ```
