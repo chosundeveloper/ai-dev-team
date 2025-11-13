@@ -629,7 +629,7 @@ def create_final_page():
     print("✅ Spark Labs 최종 페이지 생성 완료!")
     print("📄 Groq, Claude, 라Codex를 Infrastructure로 명확히 소개")
     print("👥 5명의 AI 에이전트 (Groq 엔진 사용)")
-    print("🚀 3개의 바이럴 프로젝트")
+    print("🚀 3개의 즉시 실행 제품 정보 포함")
 
 if __name__ == "__main__":
     create_final_page()
