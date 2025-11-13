@@ -252,6 +252,21 @@ AI 개발팀이 스스로 소개 페이지를 제작
    open index.html
    ```
 
+## 🗂️ CrewAI 오더 콘솔
+
+- 여러 에이전트에게 직접 명령을 내리고 응답을 따로 받고 싶다면 `crew_console.py`를 사용하세요.
+- 필요한 패키지 설치: `pip install crewai langchain_groq`
+- Groq API 키는 `.env` 또는 환경 변수 `GROQ_API_KEY`에 설정합니다.
+- 한 번에 실행 예시:
+  ```bash
+  python3 crew_console.py --agent pm --order "Landing page 요구사항을 문장으로 정리해줘"
+  ```
+- 메뉴 기반 인터랙티브 모드:
+  ```bash
+  python3 crew_console.py
+  ```
+  이후 `pm`, `designer`, `frontend`, `backend`, `growth` 중 하나를 선택하고 오더를 입력하면 해당 에이전트의 응답을 즉시 확인할 수 있습니다.
+
 ### 👥 누가 뭘 기여했나요?
 - **Alex (PM)**: 요구사항 브리핑, Build Plan 설계, README 실행 요약
 - **Maya (Design)**: 레이아웃/컬러 토큰, Hero·섹션 배치 가이드
