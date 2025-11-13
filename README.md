@@ -267,6 +267,13 @@ AI 개발팀이 스스로 소개 페이지를 제작
   ```
   이후 `pm`, `designer`, `frontend`, `backend`, `growth` 중 하나를 선택하고 오더를 입력하면 해당 에이전트의 응답을 즉시 확인할 수 있습니다.
 
+### PM 전용 풀오토 플로우
+- PM에게만 오더를 전달하고, PM이 내부적으로 디자이너/프론트엔드에게 지시하도록 하고 싶다면 `pm_console.py`를 사용하세요.
+  ```bash
+  python3 pm_console.py
+  ```
+- 요구사항을 입력하면 PM → 디자이너 → 프론트엔드 순으로 자동 실행되며, 결과 요약은 터미널과 `reports/pm_flow.json`에 저장됩니다.
+
 ## 📝 보고 & 승인 루프
 
 - `crew_console.py`로 실행한 모든 오더는 `reports/log.jsonl`에 `pending` 상태로 기록됩니다.
