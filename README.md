@@ -252,6 +252,16 @@ AI 개발팀이 스스로 소개 페이지를 제작
    open index.html
    ```
 
+### 🌐 LLM 요금/네트워크 없이 돌리고 싶다면?
+- `.env` 또는 환경 변수에 `LLM_PROVIDER=ollama`를 설정하고 [Ollama](https://ollama.com/download)를 설치한 뒤, 원하는 모델을 받아 두면 됩니다.
+  ```bash
+  ollama pull llama3.1
+  export LLM_PROVIDER=ollama
+  export OLLAMA_MODEL=llama3.1   # 생략 시 기본값
+  ```
+- Python 의존성: `pip install langchain-community` (가상환경 권장)
+- 그 상태에서 `python3 create_team_page.py` 혹은 `python3 main.py`를 실행하면 로컬 LLM만으로 팀 생성/기획이 진행됩니다.
+
 ## 🗂️ CrewAI 오더 콘솔
 
 - 여러 에이전트에게 직접 명령을 내리고 응답을 따로 받고 싶다면 `crew_console.py`를 사용하세요.

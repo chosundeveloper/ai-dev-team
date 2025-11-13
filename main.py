@@ -13,6 +13,7 @@ from agents.competitive_analysis import competitive_analysis_agent
 from agents.idea_generator import idea_generator_agent
 from agents.evaluator import evaluator_agent
 from agents.pm import pm_agent
+from llm_factory import build_chat_model
 
 
 def create_workflow():
@@ -21,32 +22,8 @@ def create_workflow():
     # 환경 변수 로드
     load_dotenv()
 
-    # LLM 설정
-    llm_provider = os.getenv('LLM_PROVIDER', 'groq')
-
-    if llm_provider == 'groq':
-        from langchain_groq import ChatGroq
-        llm = ChatGroq(
-            model="llama-3.3-70b-versatile",  # 무료, 빠름
-            temperature=0.7
-        )
-        print("🤖 LLM: Groq Llama 3.3 70B (무료)")
-    elif llm_provider == 'openai':
-        from langchain_openai import ChatOpenAI
-        llm = ChatOpenAI(
-            model="gpt-4o-mini",
-            temperature=0.7
-        )
-        print("🤖 LLM: OpenAI GPT-4o-mini")
-    elif llm_provider == 'anthropic':
-        from langchain_anthropic import ChatAnthropic
-        llm = ChatAnthropic(
-            model="claude-3-5-sonnet-20241022",
-            temperature=0.7
-        )
-        print("🤖 LLM: Anthropic Claude 3.5 Sonnet")
-    else:
-        raise ValueError(f"지원하지 않는 LLM: {llm_provider}")
+    llm = build_chat_model(role="creative")
+    print(f"🤖 LLM Provider: {os.getenv('LLM_PROVIDER', 'groq').lower()}")
 
     # StateGraph 생성
     workflow = StateGraph(AgentState)

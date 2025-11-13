@@ -10,20 +10,14 @@ from dev_team_state import DevTeamState
 from dev_agents.pm_agent import pm_agent
 from dev_agents.designer_agent import designer_agent
 from dev_agents.frontend_agent import frontend_agent
+from llm_factory import build_chat_model
 
 
 def create_team_workflow():
     """개발팀 워크플로우 생성"""
     load_dotenv()
 
-    # Groq LLM 설정
-    from langchain_groq import ChatGroq
-
-    # PM, Designer, Frontend는 Llama 3.3 사용
-    llm_creative = ChatGroq(
-        model="llama-3.3-70b-versatile",
-        temperature=0.7
-    )
+    llm_creative = build_chat_model(role="creative")
 
     print("🤖 AI 개발팀 시작")
     print("=" * 60)
