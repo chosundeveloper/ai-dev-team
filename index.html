@@ -3,624 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spark Labs - Viral Product Builders</title>
+    <meta name="description" content="간단하게 BMI(체질량지수)를 계산해보세요. 키와 몸무게를 입력하여 자신의 건강 상태를 확인하고 적정 체중 범위를 알아보세요.">
+    <meta name="keywords" content="BMI 계산기, 체질량지수, 건강 계산기, 적정 체중, 비만도 계산">
+    <title>BMI 계산기</title>
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="BMI 계산기 - 당신의 체질량지수는?">
+    <meta property="og:description" content="간단하게 BMI를 계산하고 건강 상태를 확인해보세요.">
+    <meta property="og:image" content="https://example.com/bmi-calculator-thumbnail.jpg"> <!-- Placeholder image -->
+    <meta property="og:url" content="https://example.com/bmi-calculator"> <!-- Placeholder URL -->
+    <meta property="og:type" content="website">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            line-height: 1.6;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #f59e0b, #ea580c, #dc2626);
-            border-radius: 20px;
-            margin-bottom: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-actions {
-            margin-top: 2rem;
+            font-family: 'Noto Sans KR', sans-serif;
             display: flex;
+            flex-direction: column; /* Changed to column to stack container and faq */
             justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .hero-actions a {
-            padding: 0.9rem 1.8rem;
-            border-radius: 999px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s ease;
-        }
-        .hero-actions a.primary {
-            background: linear-gradient(135deg, #f59e0b, #dc2626);
-            color: white;
-        }
-        .hero-actions a.secondary {
-            border: 1px solid rgba(255,255,255,0.5);
-            color: white;
-        }
-        .hero-actions a:hover {
-            transform: translateY(-3px);
-        }
-        .hero::before {
-            content: '🔥';
-            position: absolute;
-            font-size: 15rem;
-            opacity: 0.1;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: white;
-            font-weight: 900;
-            position: relative;
-            z-index: 1;
-        }
-        .hero .tagline {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.95);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Section */
-        section { margin-bottom: 5rem; }
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, #f59e0b, #dc2626);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-        }
-
-        /* Infrastructure Team */
-        .infra-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        .infra-card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 2px solid;
-            position: relative;
-            overflow: hidden;
-        }
-        .infra-card.groq {
-            border-color: #f59e0b;
-            background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(220,38,38,0.1));
-        }
-        .infra-card.claude {
-            border-color: #8b5cf6;
-            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(99,102,241,0.1));
-        }
-        .infra-card.codex {
-            border-color: #14b8a6;
-            background: linear-gradient(135deg, rgba(20,184,166,0.12), rgba(59,130,246,0.08));
-        }
-        .infra-logo {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-        .infra-card h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .infra-card.groq h3 { color: #f59e0b; }
-        .infra-card.claude h3 { color: #8b5cf6; }
-        .infra-role {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-        .infra-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-        }
-        .infra-specs {
-            background: rgba(0,0,0,0.2);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-top: 1.5rem;
-        }
-        .spec-item {
-            display: flex;
             align-items: center;
-            gap: 1rem;
-            margin: 0.75rem 0;
-            font-size: 1rem;
-        }
-        .spec-icon { font-size: 1.5rem; }
-
-        /* Agent Team */
-        .agent-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .agent-card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
-        }
-        .agent-card:hover {
-            transform: translateY(-10px);
-            border-color: #f59e0b;
-            box-shadow: 0 20px 40px rgba(245,158,11,0.2);
-        }
-        .avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #f59e0b, #dc2626);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 0 auto 1rem;
-        }
-        .agent-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            color: #f59e0b;
-        }
-        .role {
-            text-align: center;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-        .engine {
-            text-align: center;
-            font-size: 0.85rem;
-            color: #f59e0b;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        .description {
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            text-align: center;
+            min-height: 100vh; /* Use min-height for content that might exceed viewport */
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            padding: 20px; /* Add some padding for smaller screens */
+            box-sizing: border-box; /* Include padding in element's total width and height */
         }
 
-        /* Projects */
-        .project-card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 2rem;
-        }
-        .project-title {
-            font-size: 2rem;
-            color: #f59e0b;
-            margin-bottom: 1rem;
-        }
-
-        /* Run Now */
-        .run-section {
-            background: rgba(15,23,42,0.6);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            margin-bottom: 5rem;
-        }
-        .run-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-        .run-card {
-            background: rgba(255,255,255,0.04);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .run-card h3 {
-            font-size: 1.2rem;
-            color: #f59e0b;
-            margin-bottom: 0.5rem;
-        }
-        .run-card p {
-            font-size: 0.95rem;
-            color: #cbd5e1;
-            margin-bottom: 0.75rem;
-        }
-        .run-card pre {
-            background: rgba(15,23,42,0.8);
-            padding: 0.8rem;
+        .container {
+            padding: 40px;
+            background-color: #fff;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.08);
-            font-size: 0.9rem;
-            color: #e2e8f0;
-            overflow-x: auto;
-        }
-
-        /* Contributions */
-        .contrib-section {
-            background: rgba(15,23,42,0.6);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            margin-bottom: 5rem;
-        }
-        .contrib-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-        .contrib-card {
-            background: rgba(255,255,255,0.04);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .contrib-card h3 {
-            font-size: 1.05rem;
-            color: #38bdf8;
-            margin-bottom: 0.5rem;
-        }
-        .contrib-card ul {
-            list-style: disc;
-            margin-left: 1.25rem;
-            color: #cbd5e1;
-            line-height: 1.5;
-        }
-        .viral-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #dc2626, #f59e0b);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        footer {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            width: 400px;
+            max-width: 95%;
             text-align: center;
-            padding: 3rem 2rem;
-            color: #64748b;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px; /* Space between container and faq */
         }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .infra-grid { grid-template-columns: 1fr; }
-            .agent-grid { grid-template-columns: 1fr; }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #34495e;
+        }
+
+        .input-group input {
+            width: calc(100% - 24px); /* Adjust for padding */
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        #calculate-btn {
+            background-color: #3498db;
+            color: white;
+            width: 100%;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #calculate-btn:hover {
+            background-color: #2980b9;
+        }
+
+        #result-section {
+            margin-top: 30px;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            display: none; /* Hidden by default */
+        }
+        
+        #result-section h2 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        #bmi-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        #bmi-category {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        /* FAQ Section Styling */
+        .faq-section {
+            margin-top: 20px; /* Adjusted margin-top */
+            padding: 30px; /* Increased padding */
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            width: 400px;
+            max-width: 95%;
+            text-align: left;
+        }
+
+        .faq-section h2 {
+            font-size: 24px; /* Increased font size */
+            color: #2c3e50;
+            margin-bottom: 25px; /* Increased margin */
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 20px; /* Increased margin */
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px; /* Increased padding */
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item h3 {
+            font-size: 19px; /* Increased font size */
+            color: #34495e;
+            margin-bottom: 8px; /* Increased margin */
+        }
+
+        .faq-item p {
+            font-size: 16px; /* Increased font size */
+            color: #666;
+            line-height: 1.7; /* Adjusted line height */
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <!-- Hero -->
-        <div class="hero">
-            <h1>🔥 Spark Labs</h1>
-            <p class="tagline">Igniting Viral Ideas</p>
-            <p style="margin-top: 1rem; font-size: 1.1rem; position: relative; z-index: 1;">
-                사용자가 열광하는 바이럴 제품을 2-4주 안에 만듭니다
-            </p>
-            <div class="hero-actions">
-                <a class="primary" href="#run-now">🛠️ Run It Now</a>
-                <a class="secondary" href="#contributors">👥 팀 기여 보기</a>
-            </div>
+        <h1>BMI 계산기 📏</h1>
+        
+        <div class="input-group">
+            <label for="height">키 (cm)</label>
+            <input type="number" id="height" placeholder="예: 175">
         </div>
 
-        <!-- Infrastructure Team -->
-        <section>
-            <h2>⚡ AI Infrastructure</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #cbd5e1; margin-bottom: 3rem;">
-                모든 AI 에이전트를 작동시키는 핵심 엔진
-            </p>
+        <div class="input-group">
+            <label for="weight">몸무게 (kg)</label>
+            <input type="number" id="weight" placeholder="예: 70">
+        </div>
 
-            <div class="infra-grid">
-                <!-- Groq -->
-                <div class="infra-card groq">
-                    <div class="infra-logo">⚡</div>
-                    <h3>Groq</h3>
-                    <p class="infra-role">AI Engine Provider</p>
-                    <p class="infra-description">
-                        초고속 LLM 추론 엔진. 모든 AI 에이전트(Alex, Maya, Chris, Jordan, Sam)의 두뇌를 제공합니다.
-                        일반 GPU보다 10배 빠른 LPU(Language Processing Unit) 기술로 실시간 응답을 가능하게 합니다.
-                    </p>
-                    <div class="infra-specs">
-                        <div class="spec-item">
-                            <span class="spec-icon">🚀</span>
-                            <span><strong>속도:</strong> 일반 대비 10배 빠른 추론</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">🤖</span>
-                            <span><strong>모델:</strong> Llama 3.3 70B, Mixtral 8x7b</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">💰</span>
-                            <span><strong>가격:</strong> 완전 무료 API (Free Tier)</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">🔗</span>
-                            <span><strong>역할:</strong> 5개 에이전트의 LLM 엔진</span>
-                        </div>
-                    </div>
-                </div>
+        <button id="calculate-btn">BMI 계산하기</button>
 
-                <!-- Claude -->
-                <div class="infra-card claude">
-                    <div class="infra-logo">🧠</div>
-                    <h3>Claude</h3>
-                    <p class="infra-role">Chief Developer & Orchestrator</p>
-                    <p class="infra-description">
-                        전체 시스템을 총괄하고 실제 코드를 작성하는 AI 개발자.
-                        LangGraph로 5개 에이전트를 조율하고, 프론트엔드부터 백엔드까지 풀스택 개발을 담당합니다.
-                    </p>
-                    <div class="infra-specs">
-                        <div class="spec-item">
-                            <span class="spec-icon">💻</span>
-                            <span><strong>역할:</strong> 실제 코드 작성 및 시스템 설계</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">🔄</span>
-                            <span><strong>오케스트레이션:</strong> LangGraph 워크플로우 관리</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">📚</span>
-                            <span><strong>컨텍스트:</strong> 200K 토큰 (긴 문서 처리)</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">🎯</span>
-                            <span><strong>포지션:</strong> Lead Developer / Architect</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 라Codex -->
-                <div class="infra-card codex">
-                    <div class="infra-logo">🛠️</div>
-                    <h3>라Codex</h3>
-                    <p class="infra-role">On-Device Builder & QA</p>
-                    <p class="infra-description">
-                        Claude의 설계를 바탕으로 실제 로컬 환경에서 코드를 작성하고 테스트하는 실행형 AI 엔지니어.
-                        Codex CLI로 repo를 직접 수정하고 lint/test를 돌리며, 모든 산출물을 Git에 남깁니다.
-                    </p>
-                    <div class="infra-specs">
-                        <div class="spec-item">
-                            <span class="spec-icon">🧠</span>
-                            <span><strong>모델:</strong> GPT-5 Codex (실행 특화)</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">🛠️</span>
-                            <span><strong>역할:</strong> 파일 편집, 테스트, 스크립트 실행</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">🧪</span>
-                            <span><strong>품질:</strong> 로컬 검증 & 회귀 체크</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">🤝</span>
-                            <span><strong>협업:</strong> Claude 지시 ↔ Groq 에이전트 결과 통합</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="background: rgba(245,158,11,0.1); padding: 2rem; border-radius: 15px; border: 1px solid #f59e0b; margin-top: 2rem;">
-                <p style="text-align: center; font-size: 1.1rem;">
-                    <strong>🔧 작동 방식:</strong>
-                    Claude가 LangGraph로 워크플로우를 구성 →
-                    각 에이전트가 Groq 엔진으로 사고 →
-                    라Codex가 로컬에서 코드 적용·테스트 →
-                    완성된 제품 🎉
-                </p>
-            </div>
-        </section>
-
-        <!-- AI Agent Team -->
-        <section>
-            <h2>👥 AI Agent Team</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #cbd5e1; margin-bottom: 3rem;">
-                Groq 엔진으로 작동하는 5명의 전문 AI 에이전트
-            </p>
-
-            <div class="agent-grid">
-                <div class="agent-card">
-                    <div class="avatar">A</div>
-                    <h3>Alex</h3>
-                    <p class="role">Product Manager</p>
-                    <p class="engine">⚡ Powered by Groq Llama 3.3 70B</p>
-                    <p class="description">전략 기획, 시장 분석, 제품 방향 설정</p>
-                </div>
-
-                <div class="agent-card">
-                    <div class="avatar">M</div>
-                    <h3>Maya</h3>
-                    <p class="role">UI/UX Designer</p>
-                    <p class="engine">⚡ Powered by Groq Llama 3.3 70B</p>
-                    <p class="description">디자인 시스템, 사용자 경험</p>
-                </div>
-
-                <div class="agent-card">
-                    <div class="avatar">C</div>
-                    <h3>Chris</h3>
-                    <p class="role">Frontend Developer</p>
-                    <p class="engine">⚡ Powered by Groq Llama 3.3 70B</p>
-                    <p class="description">React, Next.js, UI 구현</p>
-                </div>
-
-                <div class="agent-card">
-                    <div class="avatar">J</div>
-                    <h3>Jordan</h3>
-                    <p class="role">Backend Developer</p>
-                    <p class="engine">⚡ Powered by Groq Mixtral 8x7b</p>
-                    <p class="description">API, 데이터베이스, 서버 로직</p>
-                </div>
-
-                <div class="agent-card">
-                    <div class="avatar">S</div>
-                    <h3>Sam</h3>
-                    <p class="role">Growth Hacker</p>
-                    <p class="engine">⚡ DuckDuckGo + Groq Llama 3.3</p>
-                    <p class="description">실시간 트렌드, 바이럴 마케팅</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Current Products -->
-        <section>
-            <h2>🚀 지금 바로 만드는 제품</h2>
-
-            <div class="project-card">
-                <h3 class="project-title">🧑‍💻 AI 팀 포트폴리오 퍼블리셔</h3>
-                <span class="viral-badge">🔧 실서비스</span>
-                <p style="font-size: 1.1rem; margin: 1rem 0; color: #cbd5e1;">
-                    PM → 디자이너 → 프론트엔드 에이전트가 협업해 완성된 팀 소개 페이지를 즉시 HTML/CSS로 뽑아냅니다.
-                </p>
-                <p><strong>출력:</strong> team_portfolio.html | <strong>시간:</strong> 수 분</p>
-            </div>
-
-            <div class="project-card">
-                <h3 class="project-title">📄 AI 웹사이트 기획서 메이커</h3>
-                <span class="viral-badge">🔧 실서비스</span>
-                <p style="font-size: 1.1rem; margin: 1rem 0; color: #cbd5e1;">
-                    LangGraph 멀티 에이전트가 시장조사→경쟁분석→아이디어→평가→PM 단계를 거쳐 완성된 기획서를 Markdown으로 제공합니다.
-                </p>
-                <p><strong>출력:</strong> final_plan.md | <strong>시간:</strong> 수 분</p>
-            </div>
-
-            <div class="project-card">
-                <h3 class="project-title">🧾 Launch Snapshot</h3>
-                <span class="viral-badge">🔧 실서비스</span>
-                <p style="font-size: 1.1rem; margin: 1rem 0; color: #cbd5e1;">
-                    실행 중인 프로젝트의 계획/보고서를 즉시 페이지에 반영해 팀 상태를 공유하는 경량 리포트 모듈입니다.
-                </p>
-                <p><strong>출력:</strong> Build Plan & Report 섹션 | <strong>시간:</strong> 즉시</p>
-            </div>
-        </section>
-
-
-        <!-- Run Now Section -->
-        <section id="run-now" class="run-section">
-            <h2>🛠️ Run It Now</h2>
-            <p style="text-align: center; font-size: 1.05rem; color: #cbd5e1; margin-bottom: 2rem;">
-                아래 명령만 실행하면 즉시 같은 결과물을 얻을 수 있습니다.
-            </p>
-            <div class="run-grid">
-                <div class="run-card">
-                    <h3>AI 팀 포트폴리오 퍼블리셔</h3>
-                    <p>5개 에이전트가 협업해 완전한 소개 페이지(`team_portfolio.html`)를 생성합니다.</p>
-                    <pre>python3 create_team_page.py&#10;open team_portfolio.html</pre>
-                </div>
-                <div class="run-card">
-                    <h3>AI 웹사이트 기획서 메이커</h3>
-                    <p>시장조사→기획→PM 단계를 자동으로 돌려 `final_plan.md`를 저장합니다.</p>
-                    <pre>python3 main.py&#10;open final_plan.md</pre>
-                </div>
-                <div class="run-card">
-                    <h3>Launch Snapshot (이 페이지)</h3>
-                    <p>소개 페이지(`index.html`)를 최신 정보로 재생성해 바로 공유할 수 있습니다.</p>
-                    <pre>python3 final_spark_labs.py&#10;open index.html</pre>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contributions -->
-        <section id="contributors" class="contrib-section">
-            <h2>👥 누가 무엇을 기여했나요?</h2>
-            <p style="text-align: center; font-size: 1rem; color: #cbd5e1; margin-bottom: 2rem;">
-                이번 AI 팀 포트폴리오 퍼블리셔 실행에서 각 역할이 담당한 범위입니다.
-            </p>
-            <div class="contrib-grid">
-                <div class="contrib-card">
-                    <h3>Alex · PM</h3>
-                    <ul>
-                        <li>요구사항/톤 브리프 정리</li>
-                        <li>Build Plan 단계 정의</li>
-                        <li>README 실행 요약 작성</li>
-                    </ul>
-                </div>
-                <div class="contrib-card">
-                    <h3>Maya · Design</h3>
-                    <ul>
-                        <li>레이아웃·컬러 토큰 선정</li>
-                        <li>Hero/섹션 배치 가이드 제공</li>
-                    </ul>
-                </div>
-                <div class="contrib-card">
-                    <h3>Chris · Frontend</h3>
-                    <ul>
-                        <li>HTML/CSS 구조 구현</li>
-                        <li>애니메이션·반응형 세부 조정</li>
-                    </ul>
-                </div>
-                <div class="contrib-card">
-                    <h3>라Codex · Execution</h3>
-                    <ul>
-                        <li>실제 파일 편집 & 테스트</li>
-                        <li>Git 커밋/배포 파이프라인 운영</li>
-                    </ul>
-                </div>
-                <div class="contrib-card">
-                    <h3>Claude · Lead Dev</h3>
-                    <ul>
-                        <li>LangGraph 워크플로우 총괄</li>
-                        <li>final_spark_labs.py 및 README 지휘</li>
-                    </ul>
-                </div>
-                <div class="contrib-card">
-                    <h3>Sam · Growth</h3>
-                    <ul>
-                        <li>카피·CTA 검수</li>
-                        <li>보고서 공유 시나리오 작성</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section style="text-align: center; background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(220,38,38,0.1)); padding: 4rem 2rem; border-radius: 20px;">
-            <h2>Ready to Ship Now?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #cbd5e1;">
-                AI 팀 포트폴리오와 웹 기획서를 오늘 바로 받아보세요
-            </p>
-            <a href="https://github.com/chosundeveloper/ai-dev-team"
-               style="display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(135deg, #f59e0b, #dc2626); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem;">
-                GitHub 보기 →
-            </a>
-        </section>
+        <div id="result-section">
+            <h2>당신의 BMI는</h2>
+            <div id="bmi-value">0.00</div>
+            <div id="bmi-category"></div>
+        </div>
     </div>
 
-    <footer>
-        <p><strong>Spark Labs</strong> - Building Products That Go Viral</p>
-        <p style="margin-top: 0.5rem;">
-            <strong>Infrastructure:</strong> Groq (AI Engine) + Claude (Chief Developer) + 라Codex (On-Device Builder)
-        </p>
-        <p style="margin-top: 0.5rem;">
-            <strong>Agents:</strong> Alex (PM) + Maya (Designer) + Chris (Frontend) + Jordan (Backend) + Sam (Growth)
-        </p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">
-            Powered by LangGraph × Groq × Claude × 라Codex × Multi-Agent AI
-        </p>
-    </footer>
+    <div class="faq-section">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+        <div class="faq-item">
+            <h3>Q: BMI란 무엇인가요?</h3>
+            <p>A: BMI(Body Mass Index, 체질량지수)는 키와 몸무게를 이용하여 비만도를 측정하는 지수입니다. 체중(kg)을 키(m)의 제곱으로 나눈 값으로 계산됩니다.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q: BMI 수치별 의미는 무엇인가요?</h3>
+            <p>A: 일반적으로 다음과 같이 분류됩니다.<br>
+               - 18.5 미만: 저체중<br>
+               - 18.5 이상 23 미만: 정상<br>
+               - 23 이상 25 미만: 과체중<br>
+               - 25 이상 30 미만: 비만<br>
+               - 30 이상: 고도 비만</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q: BMI 측정의 한계점은 무엇인가요?</h3>
+            <p>A: BMI는 체지방량을 직접 측정하는 것이 아니므로, 근육량이 많은 사람(예: 운동선수)이나 노인, 임산부 등에게는 정확한 비만도를 반영하지 못할 수 있습니다. 참고 자료로 활용하고 전문가와 상담하는 것이 좋습니다.</p>
+        </div>
+    </div>
+
+    <script>
+        const heightInput = document.getElementById('height');
+        const weightInput = document.getElementById('weight');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const resultSection = document.getElementById('result-section');
+        const bmiValueElem = document.getElementById('bmi-value');
+        const bmiCategoryElem = document.getElementById('bmi-category');
+
+        calculateBtn.addEventListener('click', () => {
+            const heightCm = parseFloat(heightInput.value);
+            const weightKg = parseFloat(weightInput.value);
+
+            if (isNaN(heightCm) || isNaN(weightKg) || heightCm <= 0 || weightKg <= 0) {
+                alert('키와 몸무게를 올바르게 입력해주세요.');
+                return;
+            }
+
+            const heightM = heightCm / 100; // Convert cm to meters
+            const bmi = weightKg / (heightM * heightM);
+            
+            bmiValueElem.textContent = bmi.toFixed(2);
+
+            let category = '';
+            if (bmi < 18.5) {
+                category = '저체중';
+                bmiCategoryElem.style.color = '#3498db'; // Blue
+            } else if (bmi >= 18.5 && bmi < 23) {
+                category = '정상';
+                bmiCategoryElem.style.color = '#28a745'; // Green
+            } else if (bmi >= 23 && bmi < 25) {
+                category = '과체중';
+                bmiCategoryElem.style.color = '#f39c12'; // Orange
+            } else if (bmi >= 25 && bmi < 30) {
+                category = '비만';
+                bmiCategoryElem.style.color = '#e67e22'; // Dark Orange
+            } else {
+                category = '고도 비만';
+                bmiCategoryElem.style.color = '#e74c3c'; // Red
+            }
+            bmiCategoryElem.textContent = category;
+
+            resultSection.style.display = 'block';
+        });
+    </script>
+
 </body>
 </html>
