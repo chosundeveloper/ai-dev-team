@@ -1,254 +1,259 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="간단하게 BMI(체질량지수)를 계산해보세요. 키와 몸무게를 입력하여 자신의 건강 상태를 확인하고 적정 체중 범위를 알아보세요.">
-    <meta name="keywords" content="BMI 계산기, 체질량지수, 건강 계산기, 적정 체중, 비만도 계산">
-    <title>BMI 계산기</title>
-    
-    <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="BMI 계산기 - 당신의 체질량지수는?">
-    <meta property="og:description" content="간단하게 BMI를 계산하고 건강 상태를 확인해보세요.">
-    <meta property="og:image" content="https://example.com/bmi-calculator-thumbnail.jpg"> <!-- Placeholder image -->
-    <meta property="og:url" content="https://example.com/bmi-calculator"> <!-- Placeholder URL -->
-    <meta property="og:type" content="website">
-
+    <title>AI Dev Team - Free Multi-Agent System</title>
+    <meta name="description" content="5 AI agents that collaborate to build websites. Powered by LangGraph + Groq API. Deploy for $0/month.">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            display: flex;
-            flex-direction: column; /* Changed to column to stack container and faq */
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Use min-height for content that might exceed viewport */
-            margin: 0;
-            background-color: #f0f2f5;
-            color: #333;
-            padding: 20px; /* Add some padding for smaller screens */
-            box-sizing: border-box; /* Include padding in element's total width and height */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
-            padding: 40px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            width: 400px;
-            max-width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
             text-align: center;
-            margin-bottom: 20px; /* Space between container and faq */
+            color: white;
+            padding: 40px 20px;
         }
 
         h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            color: #34495e;
-        }
-
-        .input-group input {
-            width: calc(100% - 24px); /* Adjust for padding */
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        #calculate-btn {
-            background-color: #3498db;
-            color: white;
-            width: 100%;
-            border: none;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
-
-        #calculate-btn:hover {
-            background-color: #2980b9;
-        }
-
-        #result-section {
-            margin-top: 30px;
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 5px solid #3498db;
-            display: none; /* Hidden by default */
-        }
-        
-        #result-section h2 {
-            margin-top: 0;
-            font-size: 22px;
-            color: #2c3e50;
+            font-size: 3em;
             margin-bottom: 15px;
         }
 
-        #bmi-value {
-            font-size: 36px;
-            font-weight: 700;
-            color: #3498db;
-            margin-bottom: 10px;
+        .tagline {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 30px;
         }
 
-        #bmi-category {
-            font-size: 20px;
-            font-weight: 700;
-            color: #2c3e50;
+        .badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
-        /* FAQ Section Styling */
-        .faq-section {
-            margin-top: 20px; /* Adjusted margin-top */
-            padding: 30px; /* Increased padding */
-            background-color: #fff;
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
             border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            width: 400px;
-            max-width: 95%;
-            text-align: left;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
         }
 
-        .faq-section h2 {
-            font-size: 24px; /* Increased font size */
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .project-card h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
             color: #2c3e50;
-            margin-bottom: 25px; /* Increased margin */
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .status {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
             text-align: center;
         }
 
-        .faq-item {
-            margin-bottom: 20px; /* Increased margin */
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px; /* Increased padding */
+        .status-indicator {
+            font-size: 1.2em;
+            font-weight: 600;
         }
 
-        .faq-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
         }
 
-        .faq-item h3 {
-            font-size: 19px; /* Increased font size */
-            color: #34495e;
-            margin-bottom: 8px; /* Increased margin */
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        .faq-item p {
-            font-size: 16px; /* Increased font size */
-            color: #666;
-            line-height: 1.7; /* Adjusted line height */
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>BMI 계산기 📏</h1>
-        
-        <div class="input-group">
-            <label for="height">키 (cm)</label>
-            <input type="number" id="height" placeholder="예: 175">
+        <header>
+            <h1>🤖 AI Dev Team</h1>
+            <p class="tagline">5 AI agents that build real products. Try them now!</p>
+
+            <div class="badges">
+                <span class="badge">✅ $0/month</span>
+                <span class="badge">⚡ LangGraph</span>
+                <span class="badge">🚀 FastAPI</span>
+                <span class="badge" id="status-badge">🔄 Loading...</span>
+            </div>
+        </header>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">📝</div>
+                <h2>README Generator</h2>
+                <p>Paste a GitHub URL and get a perfect README.md in 60 seconds. Our AI team analyzes your project and creates professional documentation.</p>
+                <a href="/readme-gen" class="btn">Try README Generator →</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🎨</div>
+                <h2>Landing Page Builder</h2>
+                <p>Describe your product and get a complete landing page with HTML/CSS/JS code ready to deploy.</p>
+                <a href="#" class="btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon...</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🤖</div>
+                <h2>Code Review Bot</h2>
+                <p>Submit a Pull Request URL and get detailed code review with improvements from our AI development team.</p>
+                <a href="#" class="btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon...</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">📊</div>
+                <h2>API Playground</h2>
+                <p>Test all our AI agents directly through interactive API documentation with real-time responses.</p>
+                <a href="/docs" class="btn">Open API Docs →</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">👥</div>
+                <h2>Team Portfolio</h2>
+                <p>Meet our 5 AI agents. See their capabilities, models, and what each specialist can do for you.</p>
+                <a href="/team" class="btn">Meet the Team →</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">💻</div>
+                <h2>Deploy Your Own</h2>
+                <p>Clone this project and deploy your own AI team in 3 minutes. Complete guides for Fly.io, Railway, and more.</p>
+                <a href="https://github.com/your-username/langGraph" class="btn">View on GitHub →</a>
+            </div>
         </div>
 
-        <div class="input-group">
-            <label for="weight">몸무게 (kg)</label>
-            <input type="number" id="weight" placeholder="예: 70">
+        <div class="status">
+            <p style="color: #666; margin-bottom: 10px;">System Status</p>
+            <div class="status-indicator" id="status-text">Checking...</div>
+            <p style="color: #999; margin-top: 10px; font-size: 0.9em;" id="provider-info"></p>
         </div>
 
-        <button id="calculate-btn">BMI 계산하기</button>
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="/docs">API Documentation</a>
+                <a href="/health">Health Check</a>
+                <a href="https://github.com/your-username/langGraph">GitHub</a>
+                <a href="https://github.com/your-username/langGraph/issues">Report Issue</a>
+            </div>
 
-        <div id="result-section">
-            <h2>당신의 BMI는</h2>
-            <div id="bmi-value">0.00</div>
-            <div id="bmi-category"></div>
-        </div>
-    </div>
-
-    <div class="faq-section">
-        <h2>자주 묻는 질문 (FAQ)</h2>
-        <div class="faq-item">
-            <h3>Q: BMI란 무엇인가요?</h3>
-            <p>A: BMI(Body Mass Index, 체질량지수)는 키와 몸무게를 이용하여 비만도를 측정하는 지수입니다. 체중(kg)을 키(m)의 제곱으로 나눈 값으로 계산됩니다.</p>
-        </div>
-        <div class="faq-item">
-            <h3>Q: BMI 수치별 의미는 무엇인가요?</h3>
-            <p>A: 일반적으로 다음과 같이 분류됩니다.<br>
-               - 18.5 미만: 저체중<br>
-               - 18.5 이상 23 미만: 정상<br>
-               - 23 이상 25 미만: 과체중<br>
-               - 25 이상 30 미만: 비만<br>
-               - 30 이상: 고도 비만</p>
-        </div>
-        <div class="faq-item">
-            <h3>Q: BMI 측정의 한계점은 무엇인가요?</h3>
-            <p>A: BMI는 체지방량을 직접 측정하는 것이 아니므로, 근육량이 많은 사람(예: 운동선수)이나 노인, 임산부 등에게는 정확한 비만도를 반영하지 못할 수 있습니다. 참고 자료로 활용하고 전문가와 상담하는 것이 좋습니다.</p>
-        </div>
+            <p style="opacity: 0.8;">
+                Made with ❤️ by AI Dev Team<br>
+                Powered by LangGraph × Groq × FastAPI × Fly.io
+            </p>
+        </footer>
     </div>
 
     <script>
-        const heightInput = document.getElementById('height');
-        const weightInput = document.getElementById('weight');
-        const calculateBtn = document.getElementById('calculate-btn');
-        const resultSection = document.getElementById('result-section');
-        const bmiValueElem = document.getElementById('bmi-value');
-        const bmiCategoryElem = document.getElementById('bmi-category');
+        // Check system status
+        fetch('/health')
+            .then(res => res.json())
+            .then(data => {
+                const statusText = document.getElementById('status-text');
+                const statusBadge = document.getElementById('status-badge');
+                const providerInfo = document.getElementById('provider-info');
 
-        calculateBtn.addEventListener('click', () => {
-            const heightCm = parseFloat(heightInput.value);
-            const weightKg = parseFloat(weightInput.value);
+                if (data.status === 'healthy') {
+                    statusText.textContent = '✅ All Systems Operational';
+                    statusText.style.color = '#4ade80';
+                    statusBadge.textContent = '✅ Online';
+                    statusBadge.style.background = 'rgba(74, 222, 128, 0.3)';
+                    providerInfo.textContent = `LLM Provider: ${data.llm_provider || 'groq'} | Version: ${data.version}`;
+                } else {
+                    statusText.textContent = '⚠️ Status Unknown';
+                    statusText.style.color = '#f59e0b';
+                }
+            })
+            .catch(err => {
+                document.getElementById('status-text').textContent = '❌ System Offline';
+                document.getElementById('status-text').style.color = '#ef4444';
+                document.getElementById('status-badge').textContent = '❌ Offline';
+            });
 
-            if (isNaN(heightCm) || isNaN(weightKg) || heightCm <= 0 || weightKg <= 0) {
-                alert('키와 몸무게를 올바르게 입력해주세요.');
-                return;
-            }
-
-            const heightM = heightCm / 100; // Convert cm to meters
-            const bmi = weightKg / (heightM * heightM);
-            
-            bmiValueElem.textContent = bmi.toFixed(2);
-
-            let category = '';
-            if (bmi < 18.5) {
-                category = '저체중';
-                bmiCategoryElem.style.color = '#3498db'; // Blue
-            } else if (bmi >= 18.5 && bmi < 23) {
-                category = '정상';
-                bmiCategoryElem.style.color = '#28a745'; // Green
-            } else if (bmi >= 23 && bmi < 25) {
-                category = '과체중';
-                bmiCategoryElem.style.color = '#f39c12'; // Orange
-            } else if (bmi >= 25 && bmi < 30) {
-                category = '비만';
-                bmiCategoryElem.style.color = '#e67e22'; // Dark Orange
-            } else {
-                category = '고도 비만';
-                bmiCategoryElem.style.color = '#e74c3c'; // Red
-            }
-            bmiCategoryElem.textContent = category;
-
-            resultSection.style.display = 'block';
-        });
+        // Load team stats
+        fetch('/api/status')
+            .then(res => res.json())
+            .then(data => {
+                console.log('Team loaded:', data.agents?.length || 0, 'agents');
+            });
     </script>
-
 </body>
 </html>
