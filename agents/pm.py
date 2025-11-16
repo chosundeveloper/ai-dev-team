@@ -4,11 +4,21 @@ PM 에이전트
 """
 from state import AgentState
 from langchain_core.messages import SystemMessage, HumanMessage
+from agents.utils import log_agent_event, summarize_user_comments, claim_relevant_comments
 
 
 def pm_agent(state: AgentState, llm) -> AgentState:
     """최종 기획서 작성"""
     print("📋 [PM 에이전트] 작업 중...")
+    log_agent_event(
+        state,
+        agent="Alex",
+        role="pm",
+        event="start",
+        message="최종 기획서 작성",
+    )
+    claim_relevant_comments(state, "pm", claim_all=True)
+    idea_details = state.get('idea_details') or '추가 메모 없음'
 
     # 최고 점수 아이디어 찾기
     if not state['evaluations']:
@@ -33,12 +43,18 @@ def pm_agent(state: AgentState, llm) -> AgentState:
     """
 
     # 모든 아이디어와 평가 요약
+    def _feedback_snippet(evaluation: dict) -> str:
+        feedback = evaluation.get('feedback') or ''
+        return feedback[:100]
+
     ideas_summary = "\n\n".join([
-        f"아이디어 {i+1}: {idea['title']} (점수: {eval['overall_score']}/10)\n"
+        f"아이디어 {i+1}: {idea['title']} (점수: {evaluation['overall_score']}/10)\n"
         f"- 설명: {idea['description']}\n"
-        f"- 평가: {eval['feedback'][:100]}..."
-        for i, (idea, eval) in enumerate(zip(state['ideas'], state['evaluations']))
+        f"- 평가: {_feedback_snippet(evaluation)}..."
+        for i, (idea, evaluation) in enumerate(zip(state['ideas'], state['evaluations']))
     ])
+
+    user_comments = summarize_user_comments(state)
 
     user_message = f"""
     전체 분석 결과를 바탕으로 최종 기획서를 작성해주세요.
@@ -61,6 +77,10 @@ def pm_agent(state: AgentState, llm) -> AgentState:
     - 구현 난이도: {best_eval['implementation_difficulty']}/10
     - SEO 점수: {best_eval['seo_score']}/10
     - 수익화 가능성: {best_eval['monetization_potential']}/10
+
+    사용자 아이디어 상세 메모: {idea_details}
+    사용자 추가 코멘트:
+    {user_comments}
 
     다음 내용을 포함한 최종 기획서를 작성해주세요:
 
@@ -86,4 +106,11 @@ def pm_agent(state: AgentState, llm) -> AgentState:
 
     state['final_plan'] = response.content
     print("✅ 최종 기획서 작성 완료")
+    log_agent_event(
+        state,
+        agent="Alex",
+        role="pm",
+        event="result",
+        message=response.content,
+    )
     return state

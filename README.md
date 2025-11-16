@@ -1,64 +1,61 @@
-# 🤖 AI 개발팀 - LangGraph 멀티 에이전트 시스템
+# 🤖 AI Dev Team - 24/7 Self-Improving Ops
 
-> **조회수 높은 웹사이트를 자동으로 기획하고 개발하는 AI 팀**
+> **24/7로 뛰는 5명의 AI 팀이 LangGraph + Groq 기반으로 제품을 기획·실행·개선합니다.**
 
-[![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?logo=github)](https://github.com)
+[![Deployed on Fly.io](https://img.shields.io/badge/Deployed-Fly.io-blueviolet)](https://ai-dev-team-lang.fly.dev)
 [![LangGraph](https://img.shields.io/badge/LangGraph-1.0-green)](https://github.com/langchain-ai/langgraph)
-[![Groq](https://img.shields.io/badge/Groq-Free-orange)](https://groq.com)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-blue)](https://fastapi.tiangolo.com)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![Cost](https://img.shields.io/badge/Cost-$0%2Fmonth-success)](https://ai-dev-team-lang.fly.dev)
 
-**🌐 [팀 포트폴리오 보기](./team_portfolio.html)** | **📖 [배포 가이드](./DEPLOY.md)** | **📚 [팀 소개](./TEAM_README.md)**
+**🎯 [Live Demo](https://ai-dev-team-lang.fly.dev)** | **📚 [API Docs](https://ai-dev-team-lang.fly.dev/docs)** | **🚀 [Deploy Guide](./docs/DEPLOY.md)** | **💡 [Projects](./VIRAL_PROJECTS.md)**
+
+> 빠르게 써볼 미니 툴: [계산기 허브](https://calc-lab.fly.dev/calculators) · [점심 메뉴 룰렛](https://calc-lab.fly.dev/lunch)
 
 ---
 
 ## 👥 우리 팀을 소개합니다
 
 ### **Alex** - Product Manager
-- **AI 파트너**: Llama 3.3 70B
+- **AI 파트너**: Llama 3.3 70B (Groq)
 - **전문 분야**: 전략 기획, 요구사항 분석, 시장 조사
-- **역할**: 팀의 비전을 설정하고 프로젝트를 이끄는 전략가
+- **미션**: 24/7 루프의 속도를 관리하고, 다음 사이클 목표를 정의
 
 ### **Maya** - UI/UX Designer
-- **AI 파트너**: Llama 3.3 70B
+- **AI 파트너**: Llama 3.3 70B (Groq)
 - **전문 분야**: UI 디자인, 사용자 경험, 프로토타이핑
-- **역할**: 아름답고 직관적인 인터페이스를 설계
+- **미션**: 실험 템플릿과 사용자 피드백을 빠르게 반영해 UX를 개선
 
 ### **Chris** - Frontend Developer
-- **AI 파트너**: Llama 3.3 70B
+- **AI 파트너**: Llama 3.3 70B (Groq)
 - **전문 분야**: React, TypeScript, HTML/CSS, Next.js
-- **역할**: 사용자가 보는 모든 것을 완벽하게 구현
+- **미션**: 실험 위젯/대시보드를 상시 개선하고 품질 측정
 
 ### **Jordan** - Backend Developer
-- **AI 파트너**: Mixtral 8x7b
+- **AI 파트너**: Mixtral 8x7B (Groq)
 - **전문 분야**: Python, FastAPI, PostgreSQL, Docker
-- **역할**: 탄탄한 서버 로직과 API 구축
+- **미션**: LangGraph 워크플로우와 큐/상태 엔진을 최적화
 
 ### **Sam** - Market Researcher
-- **AI 파트너**: DuckDuckGo + Llama 3.3
+- **AI 파트너**: Llama 3.3 70B (Groq)
 - **전문 분야**: 시장 조사, 트렌드 분석, 경쟁 분석
-- **역할**: 실시간 시장 데이터로 인사이트 제공
+- **미션**: Git/로그/사용자 코멘트 데이터를 분석해 개선 기회를 생성
 
 ---
 
 ## 🎯 우리가 하는 일
 
-### 1️⃣ 웹사이트 기획 시스템
+### 1️⃣ 24/7 운영·개선 루프
 
-5개의 전문 에이전트가 협업하여 웹사이트 아이디어를 기획합니다:
+- 모든 코멘트와 피드백은 공용 큐에 브로드캐스트되고, 각 에이전트가 스스로 담당 여부를 합의합니다.
+- PM은 회차마다 회고/우선순위를 재정비하고, 다음 루프에서 바로 반영합니다.
+- 목적: **“기획서 작성”이 아니라 “AI 팀 자체를 지속 개선”** 하는 운영체제 구축.
 
-1. **시장조사 에이전트** - 트렌드 분석, 인기 키워드 조사
-2. **경쟁분석 에이전트** - 유사 사이트 분석, 차별화 포인트
-3. **기획 에이전트** - 아이디어 생성, 기능 명세
-4. **평가 에이전트** - 바이럴 가능성, 구현 난이도, SEO 평가
-5. **PM 에이전트** - 최종 기획서 작성, 우선순위 정리
+### 2️⃣ 실전 기획 & 코드 생산
 
-### 2️⃣ 팀 포트폴리오 자동 생성
-
-AI 개발팀이 스스로 소개 페이지를 만듭니다:
-- PM이 팀 구성 및 프로젝트 아이디어 기획
-- Designer가 페이지 디자인 수립
-- Frontend가 완전한 HTML/CSS/JS 코드 작성
-
-**👉 [생성된 팀 포트폴리오 보기](./team_portfolio.html)**
+- 시장조사 → 경쟁분석 → 기획 → 평가 → PM 보고까지 LangGraph 그래프 하나로 관리.
+- 동일 파이프라인으로 팀 포트폴리오, 대시보드, 실험용 위젯 등 산출물까지 자동 생성.
+- **👉 [생성된 팀 포트폴리오 보기](./team_portfolio.html)**
 
 ## 🛠️ 설치 방법
 
@@ -102,7 +99,39 @@ python demo_team_page.py
 python create_team_page.py
 ```
 
-### GitHub Pages 배포
+### 로컬 FastAPI 서버 실행
+
+```bash
+# API 서버 시작
+python app.py
+
+# 브라우저에서 확인
+open http://localhost:8080
+open http://localhost:8080/docs  # API 문서
+```
+
+### Fly.io 프로덕션 배포
+
+```bash
+# Fly.io CLI 설치
+brew install flyctl  # macOS
+curl -L https://fly.io/install.sh | sh  # Linux/WSL
+
+# 로그인
+flyctl auth login
+
+# 앱 생성 및 배포
+flyctl launch --name ai-dev-team --region nrt --no-deploy
+flyctl secrets set GROQ_API_KEY=your_groq_api_key
+flyctl deploy
+
+# 배포 확인
+flyctl open
+```
+
+**상세 배포 가이드**: [FLY_DEPLOY.md](./FLY_DEPLOY.md)
+
+### GitHub Pages 배포 (정적 페이지)
 
 ```bash
 # Git 초기화 및 배포
@@ -347,3 +376,16 @@ MIT License - 자유롭게 사용하세요!
 🤖 **Powered by** LangGraph × Groq × Claude × 라Codex × GitHub Actions
 
 </div>
+### 마케팅 인사이트 리포트
+
+```bash
+python marketing_agent.py
+open reports/marketing_sites.md
+```
+
+### DuckDuckGo 리서치 에이전트
+
+```bash
+python duckduckgo_report.py
+open reports/duckduckgo_report.md
+```

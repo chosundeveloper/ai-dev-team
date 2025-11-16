@@ -4,11 +4,22 @@
 """
 from state import AgentState
 from langchain_core.messages import SystemMessage, HumanMessage
+from agents.utils import log_agent_event, summarize_user_comments, claim_relevant_comments
 
 
 def market_research_agent(state: AgentState, llm) -> AgentState:
     """시장조사 수행"""
     print("🔍 [시장조사 에이전트] 작업 중...")
+    log_agent_event(
+        state,
+        agent="Alex",
+        role="market_research",
+        event="start",
+        message="시장조사 시작",
+    )
+    claim_relevant_comments(state, "market_research")
+
+    idea_details = state.get('idea_details') or '추가 메모 없음'
 
     system_prompt = """당신은 웹 트렌드 전문 시장조사 분석가입니다.
 
@@ -25,9 +36,14 @@ def market_research_agent(state: AgentState, llm) -> AgentState:
     - 검색 수요 (사람들이 찾는)
     """
 
+    user_comments = summarize_user_comments(state)
+
     user_message = f"""
     사용자 요구사항: {state['user_input']}
     제약조건: {state.get('constraints', '없음')}
+    아이디어 상세 메모: {idea_details}
+    추가 사용자 코멘트:
+    {user_comments}
 
     위 요구사항을 바탕으로:
     1. 관련된 최신 웹 트렌드 분석
@@ -59,4 +75,11 @@ def market_research_agent(state: AgentState, llm) -> AgentState:
     state['popular_keywords'] = keywords[:7] if keywords else ['AI', '자동화', '생산성']
 
     print(f"✅ 시장조사 완료: {len(keywords)}개 키워드 발굴")
+    log_agent_event(
+        state,
+        agent="Alex",
+        role="market_research",
+        event="result",
+        message=response.content,
+    )
     return state

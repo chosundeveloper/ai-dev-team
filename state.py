@@ -3,6 +3,7 @@
 모든 에이전트가 공유하는 상태 구조
 """
 from typing import TypedDict, List, Optional
+from typing import Literal
 from typing_extensions import Annotated
 
 
@@ -25,11 +26,28 @@ class EvaluationScore(TypedDict):
     feedback: str
 
 
+class UserComment(TypedDict):
+    """사용자 코멘트"""
+    message: str
+    timestamp: str
+    assigned_to: List[str]
+
+
+class AgentLog(TypedDict):
+    """에이전트 대화 로그"""
+    agent: str
+    role: str
+    event: Literal["start", "result", "info", "error"]
+    message: str
+    timestamp: str
+
+
 class AgentState(TypedDict):
     """전체 에이전트가 공유하는 상태"""
     # 입력
     user_input: str
     constraints: Optional[str]
+    idea_details: str
 
     # 시장조사 결과
     market_trends: str
@@ -51,3 +69,9 @@ class AgentState(TypedDict):
     # 반복 제어
     iteration_count: int
     needs_improvement: bool
+
+    # 로그
+    conversation_logs: List[AgentLog]
+
+    # 사용자 코멘트
+    user_comments: List[UserComment]

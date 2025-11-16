@@ -5,11 +5,21 @@
 from state import AgentState, EvaluationScore
 from langchain_core.messages import SystemMessage, HumanMessage
 import json
+from agents.utils import log_agent_event, summarize_user_comments, claim_relevant_comments
 
 
 def evaluator_agent(state: AgentState, llm) -> AgentState:
     """아이디어 평가"""
     print("📊 [평가 에이전트] 작업 중...")
+    log_agent_event(
+        state,
+        agent="Chris",
+        role="evaluator",
+        event="start",
+        message="아이디어 평가 시작",
+    )
+    claim_relevant_comments(state, "evaluator")
+    idea_details = state.get('idea_details') or '추가 메모 없음'
 
     system_prompt = """당신은 웹사이트 성공 가능성을 평가하는 전문가입니다.
 
@@ -24,6 +34,8 @@ def evaluator_agent(state: AgentState, llm) -> AgentState:
 
     evaluations = []
 
+    user_comments = summarize_user_comments(state)
+
     for idx, idea in enumerate(state['ideas']):
         user_message = f"""
         아이디어 평가 요청:
@@ -33,6 +45,9 @@ def evaluator_agent(state: AgentState, llm) -> AgentState:
         타겟: {idea['target_audience']}
         기능: {', '.join(idea['key_features'])}
         차별화: {idea['differentiation']}
+        사용자 아이디어 상세 메모: {idea_details}
+        사용자 코멘트:
+        {user_comments}
 
         다음 형식으로 평가해주세요:
         {{
@@ -96,4 +111,11 @@ def evaluator_agent(state: AgentState, llm) -> AgentState:
 
     state['evaluations'] = evaluations
     print(f"✅ 평가 완료: {len(evaluations)}개 아이디어")
+    log_agent_event(
+        state,
+        agent="Chris",
+        role="evaluator",
+        event="result",
+        message=json.dumps({'evaluations': evaluations}, ensure_ascii=False, indent=2),
+    )
     return state

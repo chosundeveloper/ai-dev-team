@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 LangGraph 팀 - 실시간 대시보드</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #0f172a;
+            --panel: #1e293b;
+            --accent: #38bdf8;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #0b1120);
+            color: var(--text);
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        .app {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 45px rgba(2,6,23,0.7);
+            backdrop-filter: blur(12px);
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        textarea, input {
+            width: 100%;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(15,23,42,0.6);
+            color: var(--text);
+            padding: 14px;
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            color: white;
+            font-weight: bold;
+            border-radius: 16px;
+            padding: 14px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 16px;
+            box-shadow: 0 15px 35px rgba(56,189,248,0.3);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        button:not(:disabled):hover {
+            transform: translateY(-2px);
+        }
+
+        .status {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(56,189,248,0.15);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        .last-run {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .comment-box {
+            margin-top: 24px;
+            padding: 18px;
+            border-radius: 16px;
+            background: rgba(15,23,42,0.55);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .toggle input {
+            width: auto;
+            accent-color: #38bdf8;
+            transform: scale(1.1);
+        }
+
+        .template-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 16px;
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .template-actions button {
+            padding: 6px 12px;
+            border-radius: 10px;
+            border: 1px dashed rgba(255,255,255,0.4);
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .template-actions button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .chip {
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(15,23,42,0.4);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s ease;
+        }
+
+        .chip:hover {
+            background: rgba(56,189,248,0.2);
+        }
+
+        .comment-box textarea {
+            min-height: 90px;
+        }
+
+        .comment-box button {
+            margin-top: 10px;
+        }
+
+        .comment-status {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .comment-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 14px;
+        }
+
+        .comment-list li {
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: rgba(15,23,42,0.65);
+            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--muted);
+        }
+
+        .timeline {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .log-item {
+            border-left: 3px solid rgba(56,189,248,0.4);
+            padding-left: 14px;
+            margin-bottom: 18px;
+        }
+
+        .log-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .log-agent {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        pre {
+            white-space: pre-wrap;
+            background: rgba(15,23,42,0.8);
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
+            max-height: 360px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+
+        .plan-panel {
+            margin-top: 20px;
+        }
+
+        .agent-panel {
+            margin-top: 20px;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .agent-card {
+            background: rgba(15,23,42,0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .agent-card h3 {
+            margin: 0 0 6px 0;
+        }
+
+        .agent-card p {
+            margin: 4px 0;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .agent-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(56,189,248,0.15);
+            color: var(--accent);
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            background: rgba(56,189,248,0.15);
+            color: var(--accent);
+        }
+
+        .logs-empty {
+            text-align: center;
+            color: var(--muted);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 960px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <h1>🤖 LangGraph Agent Live</h1>
+        <p style="color: var(--muted); margin-bottom: 24px;">24/7로 돌아가는 AI 팀이 어떻게 서로 합의하고 제품을 개선하는지 실시간으로 지켜보세요.</p>
+
+        <div class="grid">
+            <section class="panel">
+                <h2 style="margin-bottom: 12px;">📝 시나리오 입력</h2>
+                <div class="status-bar">
+                    <div class="status-pill" id="run-status-pill">
+                        <span class="status-dot"></span>
+                        <span id="run-status-text">대기 중</span>
+                    </div>
+                    <div class="last-run">마지막 실행: <span id="last-run">-</span></div>
+                </div>
+                <label for="user-input">사이트 아이디어</label>
+                <div class="template-chips" id="template-chips"></div>
+                <div class="template-actions">
+                    <button type="button" id="save-template-btn">➕ 현재 입력을 템플릿으로 저장</button>
+                    <span style="font-size:0.8rem;color:var(--muted);">자주 쓰는 아이디어를 버튼으로 만들어두세요.</span>
+                </div>
+                <textarea id="user-input">AI 에이전트들이 협업해 개발 블로그 큐레이션 서비스를 기획해줘.</textarea>
+
+                <label for="ideas-detail" style="margin-top:12px;">아이디어 상세 메모</label>
+                <textarea id="ideas-detail" placeholder="예: 주요 기능과 페이지 구성, 지원해야 할 통화 등"></textarea>
+
+                <label for="constraints" style="margin-top: 12px;">제약 조건 (선택)</label>
+                <textarea id="constraints" placeholder="예: 4주, 1인 개발, 구독모델"></textarea>
+
+                <button id="run-btn" onclick="runAgents()">🚀 LangGraph 실행</button>
+                <div id="status" class="status">대기 중</div>
+
+                <div class="comment-box">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+                        <h3 style="margin:0;">🗣️ 에이전트에게 끼어들기</h3>
+                        <span class="badge" style="background:rgba(248,250,252,0.08);">다음 실행 시 전달</span>
+                    </div>
+                    <p style="color:var(--muted);font-size:0.85rem;margin:8px 0 12px;">팀이 코멘트를 읽고 적절한 역할로 자동 전달합니다. (예: “돈 되는 웹사이트” → PM/기획 단계)</p>
+                    <textarea id="comment-input" placeholder="예: 디자이너에게 다크모드 꼭 넣으라고 해줘"></textarea>
+                    <label class="toggle" style="margin-top:10px;">
+                        <input type="checkbox" id="auto-run-toggle" checked>
+                        코멘트 보내면 자동 실행
+                    </label>
+                    <button id="comment-btn" onclick="sendComment()">📨 코멘트 보내기</button>
+                    <div id="comment-status" class="comment-status">대기 중</div>
+                    <ul id="comment-list" class="comment-list"></ul>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>💬 대화 타임라인</h2>
+                    <span class="badge" id="log-count">0 step</span>
+                </div>
+                <div id="timeline" class="timeline">
+                    <p class="logs-empty">아직 대화가 없습니다. 왼쪽에서 LangGraph를 실행해보세요!</p>
+                </div>
+            </section>
+        </div>
+
+        <section class="panel plan-panel">
+            <h2>📄 최종 기획서</h2>
+            <pre id="final-plan">대기 중...</pre>
+        </section>
+
+        <section class="panel agent-panel">
+            <h2>👥 24/7 AI 팀 구성</h2>
+            <p style="color:var(--muted);font-size:0.9rem;">각 에이전트는 서로의 코멘트를 모두 듣고, 필요하면 바로 담당을 가져갑니다.</p>
+            <div id="agent-grid" class="agent-grid"></div>
+        </section>
+    </div>
+
+    <script>
+        const runBtn = document.getElementById('run-btn');
+        const statusEl = document.getElementById('status');
+        const timeline = document.getElementById('timeline');
+        const planEl = document.getElementById('final-plan');
+        const logCountEl = document.getElementById('log-count');
+        const commentInput = document.getElementById('comment-input');
+        const commentStatus = document.getElementById('comment-status');
+        const commentList = document.getElementById('comment-list');
+        const commentBtn = document.getElementById('comment-btn');
+        const autoRunToggle = document.getElementById('auto-run-toggle');
+        const runStatusText = document.getElementById('run-status-text');
+        const lastRunEl = document.getElementById('last-run');
+        const runStatusDot = document.querySelector('.status-dot');
+        const templateChips = document.getElementById('template-chips');
+        const saveTemplateBtn = document.getElementById('save-template-btn');
+        const userInputEl = document.getElementById('user-input');
+        const constraintsEl = document.getElementById('constraints');
+        const ideasDetailEl = document.getElementById('ideas-detail');
+        const agentGrid = document.getElementById('agent-grid');
+        let isRunning = false;
+        let templates = [
+            {
+                label: '뉴스레터 + 구독',
+                idea: 'AI가 고품질 뉴스레터만 큐레이션하고 구독 관리까지 해주는 서비스를 만들고 싶어.',
+                constraints: '- 2주 MVP\n- 이메일 구독 기반 수익',
+                details: '핵심 페이지: 랜딩, 큐레이션 리스트, 구독 설정. 피쳐: 카테고리 필터, 추천 로직, 구독 결제.'
+            },
+            {
+                label: '디자이너 포트폴리오',
+                idea: '디자이너가 손쉽게 인터랙티브 포트폴리오를 제작하고 공유할 수 있는 플랫폼을 기획해줘.',
+                constraints: '- 1인 개발\n- SaaS 요금제',
+                details: '필요 기능: 템플릿 선택, 드래그앤드롭 컴포넌트, Behance/Dribbble 임베드. 요금: 프리+프로.'
+            },
+            {
+                label: '사내 업무봇',
+                idea: '중소기업이 사내 공지/할 일/FAQ를 자동화하는 업무봇 서비스를 기획하고 싶어.',
+                constraints: '- 6주 개발\n- Slack 연동 반드시 필요',
+                details: '슬랙/팀즈 연동, 공지 브로드캐스트, FAQ 자동응답, 워크플로 승인. 관리자 대시보드 필요.'
+            }
+        ];
+        const agents = [
+            {
+                name: 'Sam',
+                role: '시장조사 / Growth Analyst',
+                llm: 'Llama 3.3 70B (Groq)',
+                focus: '사용자 코멘트·Git 로그를 분석해 개선 기회를 지속 생성'
+            },
+            {
+                name: 'Jordan',
+                role: 'Backend & LangGraph Ops',
+                llm: 'Mixtral 8x7B (Groq)',
+                focus: '워크플로우/큐 상태를 최적화하고 새로운 노드를 실험'
+            },
+            {
+                name: 'Maya',
+                role: 'UX Designer & Prototype Builder',
+                llm: 'Llama 3.3 70B (Groq)',
+                focus: '대시보드/위젯 UI 실험과 사용자 여정 개선'
+            },
+            {
+                name: 'Chris',
+                role: 'Frontend & Evaluation',
+                llm: 'Llama 3.3 70B (Groq)',
+                focus: '품질 지표/리스크 평가와 프론트 코드 개선'
+            },
+            {
+                name: 'Alex',
+                role: 'PM / Ops Lead',
+                llm: 'Llama 3.3 70B (Groq)',
+                focus: 'Loop 회고·우선순위 재정렬·최종 보고 출력'
+            }
+        ];
+
+        function setLoading(isLoading, text) {
+            isRunning = isLoading;
+            runBtn.disabled = isLoading;
+            statusEl.textContent = text || (isLoading ? '에이전트들이 회의를 진행 중입니다...' : '완료');
+            runStatusText.textContent = isLoading ? '실행 중' : '대기 중';
+            runStatusDot.style.background = isLoading ? '#facc15' : 'var(--accent)';
+        }
+
+        function setLastRun() {
+            const now = new Date();
+            lastRunEl.textContent = now.toLocaleTimeString('ko-KR');
+        }
+
+        function renderTemplates() {
+            templateChips.innerHTML = templates.map((tpl, idx) => `
+                <button class="chip" data-idx="${idx}">${tpl.label}</button>
+            `).join('');
+            templateChips.querySelectorAll('.chip').forEach((chip) => {
+                chip.addEventListener('click', () => {
+                    const idx = parseInt(chip.dataset.idx, 10);
+                    const tpl = templates[idx];
+                    userInputEl.value = tpl.idea;
+                    constraintsEl.value = tpl.constraints;
+                    ideasDetailEl.value = tpl.details;
+                });
+            });
+        }
+
+        function renderAgents() {
+            if (!agentGrid) return;
+            agentGrid.innerHTML = agents.map((agent) => `
+                <div class="agent-card">
+                    <span class="agent-tag">${agent.llm}</span>
+                    <h3>${agent.name}</h3>
+                    <p style="font-weight:600;color:var(--text);">${agent.role}</p>
+                    <p>${agent.focus}</p>
+                </div>
+            `).join('');
+        }
+
+        saveTemplateBtn.addEventListener('click', () => {
+            const idea = userInputEl.value.trim();
+            if (!idea) {
+                alert('저장할 사이트 아이디어를 먼저 입력해주세요.');
+                return;
+            }
+            const label = prompt('템플릿 버튼에 표시할 이름을 입력하세요.', '내 아이디어');
+            if (!label) {
+                return;
+            }
+            templates.unshift({
+                label: label.trim(),
+                idea,
+                constraints: constraintsEl.value.trim() || '- 제약 없음',
+                details: ideasDetailEl.value.trim() || '추가 메모 없음'
+            });
+            renderTemplates();
+            saveTemplateBtn.textContent = '✔️ 템플릿으로 저장됨';
+            setTimeout(() => {
+                saveTemplateBtn.textContent = '➕ 현재 입력을 템플릿으로 저장';
+            }, 2000);
+        });
+
+        function renderLogs(logs) {
+            timeline.innerHTML = '';
+            if (!logs.length) {
+                timeline.innerHTML = '<p class="logs-empty">대화가 없습니다.</p>';
+                logCountEl.textContent = '0 step';
+                return;
+            }
+
+            logs.forEach((log) => {
+                const item = document.createElement('div');
+                item.className = 'log-item';
+                item.innerHTML = `
+                    <div class="log-meta">
+                        <span class="log-agent">${log.agent} (${log.role})</span>
+                        <span>${new Date(log.timestamp).toLocaleTimeString('ko-KR')}</span>
+                    </div>
+                    <div style="font-size:0.85rem; color: var(--muted); margin-bottom: 6px;">
+                        ${log.event === 'start' ? '작업 시작' : '결과'}
+                    </div>
+                    <pre>${log.message}</pre>
+                `;
+                timeline.appendChild(item);
+            });
+            timeline.scrollTop = timeline.scrollHeight;
+            logCountEl.textContent = `${logs.length} steps`;
+        }
+
+        async function refreshComments() {
+            try {
+                const resp = await fetch('/api/comments');
+                if (!resp.ok) throw new Error('failed');
+                const data = await resp.json();
+                renderCommentList(data.comments || []);
+            } catch (error) {
+                commentList.innerHTML = '<li>코멘트를 불러오지 못했습니다.</li>';
+            }
+        }
+
+        function renderCommentList(comments) {
+            if (!comments.length) {
+                commentList.innerHTML = '<li>대기 중인 코멘트가 없습니다.</li>';
+                return;
+            }
+            commentList.innerHTML = comments.map((c) => `
+                <li>
+                    <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--muted);">
+                        <span>${new Date(c.timestamp).toLocaleTimeString('ko-KR')}</span>
+                        <span style="color:var(--accent);">자동 배분 대기</span>
+                    </div>
+                    ${c.message}
+                </li>
+            `).join('');
+        }
+
+        async function sendComment() {
+            const message = commentInput.value.trim();
+            if (!message) {
+                alert('코멘트를 입력하세요.');
+                return;
+            }
+
+            commentBtn.disabled = true;
+            commentStatus.textContent = '에이전트에게 전달 중...';
+            try {
+                const resp = await fetch('/api/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                if (!resp.ok) throw new Error('failed');
+                await resp.json();
+                commentInput.value = '';
+                commentStatus.textContent = 'LangGraph 팀에게 전달 완료! (자동 배분)';
+                refreshComments();
+                if (autoRunToggle.checked && !isRunning) {
+                    runAgents(true);
+                } else if (isRunning) {
+                    commentStatus.textContent += ' (진행 중인 실행에 반영됩니다)';
+                } else {
+                    commentStatus.textContent += ' (자동 실행 꺼짐)';
+                }
+            } catch (error) {
+                commentStatus.textContent = '전달 실패. 다시 시도해주세요.';
+            } finally {
+                commentBtn.disabled = false;
+            }
+        }
+
+        async function runAgents(autoTriggered = false) {
+            if (isRunning) {
+                statusEl.textContent = 'LangGraph가 이미 실행 중입니다.';
+                return;
+            }
+            const userInput = userInputEl.value.trim();
+            const constraints = constraintsEl.value.trim();
+            const ideaDetails = ideasDetailEl.value.trim();
+            if (!userInput) {
+                if (!autoTriggered) {
+                    alert('시나리오를 입력해주세요.');
+                } else {
+                    commentStatus.textContent = '사이트 아이디어를 입력하면 코멘트를 바로 반영할 수 있어요.';
+                }
+                return;
+            }
+
+            setLoading(true, autoTriggered ? '코멘트를 반영해 재실행 중...' : '에이전트들이 회의를 진행 중입니다...');
+            planEl.textContent = '생성 중...';
+            renderLogs([]);
+
+            try {
+                const resp = await fetch('/api/plan', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_input: userInput, constraints, idea_details: ideaDetails })
+                });
+
+                if (!resp.ok) {
+                    throw new Error('API 호출 실패');
+                }
+
+                const data = await resp.json();
+                renderLogs(data.logs || []);
+                planEl.textContent = data.plan || '생성된 기획서가 없습니다.';
+                statusEl.textContent = '완료';
+                setLastRun();
+            } catch (error) {
+                console.error(error);
+                statusEl.textContent = '실패';
+                planEl.textContent = '에러가 발생했습니다.';
+                timeline.innerHTML = '<p class="logs-empty">에러가 발생했습니다.</p>';
+            } finally {
+                setLoading(false, '완료');
+                refreshComments();
+            }
+        }
+
+        renderTemplates();
+        if (!ideasDetailEl.value.trim() && templates[0]?.details) {
+            ideasDetailEl.value = templates[0].details;
+        }
+        renderAgents();
+        refreshComments();
+    </script>
+</body>
+</html>

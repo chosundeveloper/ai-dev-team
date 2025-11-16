@@ -4,11 +4,22 @@
 """
 from state import AgentState
 from langchain_core.messages import SystemMessage, HumanMessage
+from agents.utils import log_agent_event, summarize_user_comments, claim_relevant_comments
 
 
 def competitive_analysis_agent(state: AgentState, llm) -> AgentState:
     """경쟁 분석 수행"""
     print("⚔️ [경쟁분석 에이전트] 작업 중...")
+    log_agent_event(
+        state,
+        agent="Jordan",
+        role="competitive_analysis",
+        event="start",
+        message="경쟁 분석 시작",
+    )
+    claim_relevant_comments(state, "competitive_analysis")
+
+    idea_details = state.get('idea_details') or '추가 메모 없음'
 
     system_prompt = """당신은 경쟁 분석 및 차별화 전략 전문가입니다.
 
@@ -25,11 +36,16 @@ def competitive_analysis_agent(state: AgentState, llm) -> AgentState:
     - 독특한 UX/기능 조합
     """
 
+    user_comments = summarize_user_comments(state)
+
     user_message = f"""
     시장조사 결과:
     {state['market_trends']}
 
     발굴된 키워드: {', '.join(state['popular_keywords'])}
+    아이디어 상세 메모: {idea_details}
+    추가 사용자 코멘트:
+    {user_comments}
 
     위 정보를 바탕으로:
     1. 이 분야의 주요 경쟁 서비스/사이트 분석
@@ -59,4 +75,11 @@ def competitive_analysis_agent(state: AgentState, llm) -> AgentState:
     state['differentiation_points'] = diff_points[:5] if diff_points else ['독특한 UX', '틈새 타겟팅']
 
     print(f"✅ 경쟁분석 완료: {len(diff_points)}개 차별화 포인트 발굴")
+    log_agent_event(
+        state,
+        agent="Jordan",
+        role="competitive_analysis",
+        event="result",
+        message=response.content,
+    )
     return state

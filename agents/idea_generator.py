@@ -5,11 +5,21 @@
 from state import AgentState, WebsiteIdea
 from langchain_core.messages import SystemMessage, HumanMessage
 import json
+from agents.utils import log_agent_event, summarize_user_comments, claim_relevant_comments
 
 
 def idea_generator_agent(state: AgentState, llm) -> AgentState:
     """아이디어 생성"""
     print("💡 [기획 에이전트] 작업 중...")
+    log_agent_event(
+        state,
+        agent="Maya",
+        role="idea_generator",
+        event="start",
+        message="아이디어 브레인스토밍",
+    )
+    claim_relevant_comments(state, "idea_generator")
+    idea_details = state.get('idea_details') or '추가 메모 없음'
 
     system_prompt = """당신은 창의적이고 실용적인 웹 서비스 기획자입니다.
 
@@ -26,12 +36,17 @@ def idea_generator_agent(state: AgentState, llm) -> AgentState:
     - SEO 친화적 콘텐츠 구조
     """
 
+    user_comments = summarize_user_comments(state)
+
     user_message = f"""
     시장조사 결과:
     {state['market_trends'][:500]}...
 
     경쟁분석 결과:
     차별화 포인트: {', '.join(state['differentiation_points'])}
+    아이디어 상세 메모: {idea_details}
+    추가 사용자 코멘트:
+    {user_comments}
 
     위 분석을 바탕으로 웹사이트 아이디어 3개를 제안해주세요.
 
@@ -91,4 +106,11 @@ def idea_generator_agent(state: AgentState, llm) -> AgentState:
 
     state['ideas'] = ideas
     print(f"✅ 아이디어 생성 완료: {len(ideas)}개")
+    log_agent_event(
+        state,
+        agent="Maya",
+        role="idea_generator",
+        event="result",
+        message=json.dumps({'ideas': ideas}, ensure_ascii=False, indent=2),
+    )
     return state

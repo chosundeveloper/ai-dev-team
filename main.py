@@ -68,6 +68,7 @@ def run_planning(user_input: str, constraints: str = None):
     initial_state: AgentState = {
         'user_input': user_input,
         'constraints': constraints,
+        'idea_details': '',
         'market_trends': '',
         'popular_keywords': [],
         'competitor_analysis': '',
@@ -76,7 +77,9 @@ def run_planning(user_input: str, constraints: str = None):
         'evaluations': [],
         'final_plan': '',
         'iteration_count': 0,
-        'needs_improvement': False
+        'needs_improvement': False,
+        'conversation_logs': [],
+        'user_comments': []
     }
 
     # 실행
