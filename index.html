@@ -99,6 +99,14 @@
             transition: transform 0.2s;
         }
 
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
         .btn:hover {
             transform: translateY(-2px);
         }
@@ -154,6 +162,10 @@
                 <span class="badge">⚡ LangGraph</span>
                 <span class="badge">🚀 FastAPI</span>
                 <span class="badge" id="status-badge">🔄 Loading...</span>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="/dashboard" class="btn">📊 Watch Live Dashboard →</a>
             </div>
         </header>
 
